@@ -1,16 +1,15 @@
 import React,{useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
 
-import {createRoomApi} from './api'
-export default function Landing(props) {
-    console.log(props)
+import {createRoomAPI} from './api'
+export default function Landing({currentUserId}) {
+    //console.log(props)
     const history=useHistory()
     const createRoom=useCallback(async()=>{
         
         try
         {
-            const roomInformation=await createRoomApi(props.currentUserId)
-           
+            const roomInformation=await createRoomAPI(currentUserId)
             history.push(`/rooms/${roomInformation.roomId}`)
         }
         catch(err)
@@ -18,7 +17,7 @@ export default function Landing(props) {
             console.log(err)
         }
 
-    },[props.currentUserId])
+    },[currentUserId])
 
     return (
         <div>

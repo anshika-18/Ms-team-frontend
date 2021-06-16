@@ -17,10 +17,8 @@ function App() {
     const peer=new PeerJs(userId);
     peerInstance.current=peer;
 
-    //console.log('My peer--',peer)
     peerInstance.current.on('open',(id)=>{
       setCurrentUserId(id);
-      //console.log('Appjs set --- ',id)
     })
 
   },[]);
@@ -28,17 +26,22 @@ function App() {
   
   return (
    <div>
-     <BrowserRouter>
-
-     <Route exact path="/" >
-        <Landing
+      <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={(props) => <Landing
+            {...props}
             currentUserId={currentUserId}
           />
+        }>
         </Route>
-
-     <Route path="/rooms/:roomId">
-     <Room currentUserId={currentUserId} peerInstance={peerInstance.current}></Room>
-    </Route>
+        <Route exact path="/rooms/:roomId" component={(props) => <Room
+            {...props}
+            currentUserId={currentUserId}
+            peerInstance={peerInstance.current}
+          />
+        }>
+        </Route>
+      </Switch>
     </BrowserRouter>
    </div>
   );

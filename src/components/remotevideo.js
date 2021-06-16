@@ -1,7 +1,6 @@
 import React,{useEffect,useRef} from 'react'
 
-
-export default function RemoteStreamVideo(props) {
+export default function RemoteUserVideo(props) {
 
     const userVideoRef = useRef()
     console.log('remote video stream function')
@@ -9,7 +8,13 @@ export default function RemoteStreamVideo(props) {
     useEffect(() => {
         if (userVideoRef.current && props.remoteStream) {
             userVideoRef.current.srcObject = props.remoteStream
-            userVideoRef.current.play()
+            userVideoRef.current.pause()
+            userVideoRef.current.play().then(_ => {
+                
+              })
+              .catch(e => {
+                console.log(e)
+              });
         }
     }, [props.remoteStream])
 
