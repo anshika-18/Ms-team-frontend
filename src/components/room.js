@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
-import io, { Socket } from 'socket.io-client';
+import io from 'socket.io-client';
 
 import { getUserMediaPromise } from './media';
 import { fetchRoomAPI, joinRoomAPI } from './api';
+import {useParams,useHistory} from 'react-router-dom'
 
 import RemoteUserVideo from './remotevideo';
 import BottomControls from './buttonControls';
-import {useParams,useHistory} from 'react-router-dom'
-
-
 
 function Room ({peerInstance,currentUserId}) {
 
@@ -149,6 +147,7 @@ function Room ({peerInstance,currentUserId}) {
 
         outgoingCall.off('stream', streamListener);
         resolve(newParticipant);
+        console.log(participants)
       }
 
       outgoingCall.on('stream', streamListener);
@@ -178,6 +177,21 @@ function Room ({peerInstance,currentUserId}) {
       console.error(error)
     }
   }, [currentUserId, call])
+
+
+  function screenShare(){
+      console.log('lets display screen share ',participants)
+      navigator.mediaDevices.getDisplayMedia({cursor:true}).then(stream=>{
+          const screenTrack=stream.getTracks()[0]
+          //const selected=participants.find(sender=>sender.kind==='video')
+          //console.log(screenTrack)
+          
+          //currentUserVideoRef.current.replaceTrack(screenTrack)
+          currentUserVideoRef.current.srcObject=stream
+          currentUserVideoRef.current.play()
+          currentMediaStream.current=stream
+      })
+  }
 
   return (
     <div className="Room">
@@ -211,6 +225,7 @@ function Room ({peerInstance,currentUserId}) {
         muted={muted}
         videoMuted={videoMuted}
       />
+      <button onClick={screenShare}>Share Screen</button>
     </div>
   );
 }
