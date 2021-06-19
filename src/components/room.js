@@ -216,7 +216,7 @@ function screenShare(){
       console.log('lets display screen share ',participants)
       navigator.mediaDevices.getDisplayMedia().then(stream=>{
           isShared(true);
-          const screenTrack=stream.getTracks()[0]
+         // const screenTrack=stream.getTracks()[0]
           screen.current.srcObject=stream
           screen.current.play();
 
