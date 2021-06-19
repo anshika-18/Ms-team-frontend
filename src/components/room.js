@@ -30,7 +30,7 @@ function Room ({peerInstance,currentUserId}) {
   useEffect(() => {
     setCurrentUserVideo();
     
-    const socket=io.connect('https://ms-team-anshika-frontend.herokuapp.com')
+    const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
     socketInstance.current=socket;
 
     socketInstance.current.on('get:peerId', () => {

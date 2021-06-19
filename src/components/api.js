@@ -1,5 +1,5 @@
 export const createRoomAPI=async(author)=>{
-    const response=await fetch(`https://ms-team-anshika-frontend.herokuapp.com/rooms`,{
+    const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms`,{
         method:'POST',
         headers:{
             'Accept':'application/json',
