@@ -1,0 +1,105 @@
+.chat
+{
+    background-color: rgb(188, 192, 248);
+    height: 100vh;
+    width: 25%;
+    position: fixed;
+    z-index: 11;
+}
+
+.bottom-box
+{
+    position: absolute;
+    bottom: 15px;
+    margin-left: 20px;
+}
+
+.form-input
+{
+    height:50px;
+    width: 260px;
+    border-radius: 20px;
+    padding:10px;
+    border:0;
+    font-size: 20px;
+}
+
+input:focus
+{
+    outline: none;
+    box-shadow: 0 0 15px blue;
+}
+
+.form-button
+{
+    height: 50px;
+    width: 70px;
+    font-size: 50px;
+    float:right;
+    background: none;
+    border: 0;
+    color:rgb(70, 23, 70)
+}
+
+.form-button i:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 10px purple;
+    border-radius: 50%;
+}
+
+.heading-chat
+{
+    font-size: 25px;
+    font-weight: 600;
+    background-color:bisque;
+    padding: 15px;
+}
+
+.heading-chat span
+{
+    margin-left: 120px;
+}
+
+.new-text
+{
+    max-width: 220px;
+    background-color:purple ;
+    color:white;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 5px 20px;
+    word-wrap: break-word;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.my-text
+{
+    max-width: 220px;
+    background-color:green;
+    color:white;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 150px;
+    word-wrap: break-word;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.chatbox
+{
+    overflow-y: scroll;
+    height: 80vh;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar
+{
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(61, 62, 134);
+    border-radius: 12px;
+}
+

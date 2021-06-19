@@ -6,6 +6,7 @@ import {v4 as uuid} from 'uuid'
 import Landing from './components/landing'
 import Room from './components/room'
 
+import './App.css'
 function App() {
 
   const peerInstance=useRef(null)

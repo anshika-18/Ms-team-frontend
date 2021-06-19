@@ -7,13 +7,18 @@ import {useParams,useHistory} from 'react-router-dom'
 
 import RemoteUserVideo from './remotevideo';
 import BottomControls from './buttonControls';
+import './css/room.css'
+
+import Chat from './chat'
+
 
 function Room ({peerInstance,currentUserId}) {
 
   const currentMediaStream = useRef(null);
   const currentUserVideoRef = useRef(null);
   const socketInstance = useRef(null);
-
+  const screen=useRef(null)
+  const [shared,isShared]=useState(false)
   const [muted, setMuted] = useState(false);
   const [videoMuted, setVideoMuted] = useState(false);
   const [participants, setParticipants] = useState([]);
@@ -21,10 +26,11 @@ function Room ({peerInstance,currentUserId}) {
   const history=useHistory()
   const { roomId } = useParams();
 
+
   useEffect(() => {
     setCurrentUserVideo();
     
-    const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
+    const socket=io.connect('https://ms-team-anshika-frontend.herokuapp.com')
     socketInstance.current=socket;
 
     socketInstance.current.on('get:peerId', () => {
@@ -35,19 +41,18 @@ function Room ({peerInstance,currentUserId}) {
   }, [currentUserId])
 
   useEffect(() => {
-    const userLeftListener = (peerId) => {
+    const userLeft = (peerId) => {
       const filteredParticipants = participants.filter(
         participant => participant.userId !== peerId
       )
-
       setParticipants(filteredParticipants)
     }
 
-    socketInstance?.current?.on('user:left', userLeftListener)
-
+    socketInstance?.current?.on('user:left', userLeft)
     return () => {
-      socketInstance?.current?.off('user:left', userLeftListener)
+      socketInstance?.current?.off('user:left', userLeft)
     }
+    
   }, [participants])
 
 
@@ -61,16 +66,29 @@ function Room ({peerInstance,currentUserId}) {
         return;
       }
 
+     // console.log('incoming call is ',incomingCall)      
       incomingCall.answer(currentMediaStream.current)
 
       incomingCall.on('stream', function(remoteStream) {
-        const newParticipant= {
-          userId: incomingCall.peer,
-          mediaStream: remoteStream
+        console.log('-------------------------------------------------')
+        console.log('lets check what the stream is ',remoteStream.getTracks()[0])
+        if(remoteStream.getTracks()[0].kind==='audio')
+        {
+          const newParticipant= {
+            userId: incomingCall.peer,
+            mediaStream: remoteStream
+          }
+          //console.log('m pehle vala hu')
+          setParticipants(participants.concat(newParticipant));
         }
-
-        setParticipants(participants.concat(newParticipant));
-      });
+        else
+        {
+          isShared(true)
+          screen.current.srcObject=remoteStream;
+          screen.current.play();
+        }
+        
+      })
     }
 
     peerInstance.on('call', incomingCallListener);
@@ -86,6 +104,7 @@ function Room ({peerInstance,currentUserId}) {
 
     const videoTracks = currentMediaStream.current.getVideoTracks();
 
+    console.log("video - ",videoTracks)
     if (videoTracks[0]) {
       videoTracks[0].enabled = !videoMuted
     }
@@ -136,6 +155,7 @@ function Room ({peerInstance,currentUserId}) {
       return Promise.resolve(null);
     }
 
+    //currentMediaStream.current.data="video";
     const outgoingCall = peerInstance.call(userId, currentMediaStream.current)
 
     return new Promise((resolve) => {
@@ -171,6 +191,7 @@ function Room ({peerInstance,currentUserId}) {
           .then((values=[]) => {
             const validParticipants = values.filter(value => value)
             setParticipants(validParticipants)
+
           })
       }
     } catch (error) {
@@ -179,28 +200,48 @@ function Room ({peerInstance,currentUserId}) {
   }, [currentUserId, call])
 
 
-  function screenShare(){
+const share=useCallback((stream,userId)=>{
+
+  if(!peerInstance||!screen.current)
+  {
+    return;
+  }
+  //console.log(stream.constructor.name)
+  //console.log(stream)
+  peerInstance.call(userId,stream)
+
+})
+
+function screenShare(){
       console.log('lets display screen share ',participants)
-      navigator.mediaDevices.getDisplayMedia({cursor:true}).then(stream=>{
+      navigator.mediaDevices.getDisplayMedia().then(stream=>{
+          isShared(true);
           const screenTrack=stream.getTracks()[0]
-          //const selected=participants.find(sender=>sender.kind==='video')
-          //console.log(screenTrack)
+          screen.current.srcObject=stream
+          screen.current.play();
+
+          //console.log('lets check screen ',screenTrack)
+          //console.log('0 are -- -',participants)
           
-          //currentUserVideoRef.current.replaceTrack(screenTrack)
-          currentUserVideoRef.current.srcObject=stream
-          currentUserVideoRef.current.play()
-          currentMediaStream.current=stream
+          participants.map((participant)=>share(stream,participant.userId))
+
       })
   }
 
   return (
     <div className="Room">
-      <div className="container has-text-centered	">
-        <p className="mb-5 mt-5">
-          <strong>RoomId: {roomId}</strong>
-        </p>
+        
+      <div className="room-container">
         <div className="columns">
-          <div className="column">
+          {shared
+          ?
+          <div>
+          <video className="screen" ref={screen}></video>
+        </div>
+        :
+        null
+        }
+          <div className="column-video">
             <video ref={currentUserVideoRef} muted/>
           </div>
           {
@@ -214,7 +255,11 @@ function Room ({peerInstance,currentUserId}) {
             )
           }
         </div>
+        <div>
+          <Chat socketInstance={socketInstance.current} />
       </div>
+      </div>
+      
       <BottomControls
         onLeave={() => {
           socketInstance?.current?.disconnect()
@@ -224,8 +269,9 @@ function Room ({peerInstance,currentUserId}) {
         toggleVideoMute={() => setVideoMuted(!videoMuted)}
         muted={muted}
         videoMuted={videoMuted}
+        screenShare={()=>screenShare()}
       />
-      <button onClick={screenShare}>Share Screen</button>
+      
     </div>
   );
 }

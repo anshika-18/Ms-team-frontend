@@ -1,33 +1,32 @@
 import React from 'react'
 
+import './css/button.css'
 const style={
     position:'fixed',
     width:'100%',
     padding:20,
-    bottom:0
+    bottom:0,
+    justifySelf:'center'
 }
 
 export default function BottomControls(props){
     return(
-        <div className="has-text-centered mt-5" style={style}>
-        <button className="button is-danger mr-2" onClick={props.onLeave}>
-            <span className="icon">
-                <i className="fas fa-phone-slash"/>
-            </span>
-            <span>Leave call</span>
-        </button>
-        <button className={`button is-${props.muted ? 'danger' : 'primary' } mr-2`} onClick={props.toggleMute}>
+    <div className="outer-button"  style={style}>
+        <div className="centered">
+        
+        <button className={`${props.muted ? 'danger' : 'primary' } mr-2`} onClick={props.toggleMute}>
             <span className="icon">
                 <i className={`fas ${props.muted ? 'fa-microphone-slash' : 'fa-microphone'}`}></i>
             </span>
-            <span>{props.muted ? 'Unmute' : 'Mute'}</span>
         </button>
-        <button className={`button is-${props.videoMuted ? 'danger' : 'primary' } mr-2`} onClick={props.toggleVideoMute}>
+        <button className={`${props.videoMuted ? 'danger' : 'primary' } mr-2`} onClick={props.toggleVideoMute}>
             <span className="icon">
                 <i className={`fas ${props.videoMuted ? 'fa-video-slash' : 'fa-video'}`}></i>
             </span>
-            <span>{props.videoMuted ? 'Turn video on' : 'Turn video off'}</span>
         </button>
+        <button className="share mr-2" onClick={props.screenShare}>Share Screen</button>
+        <button className="leave mr-2" onClick={props.onLeave}>Leave call</button>
+    </div>
     </div>
     )
 }

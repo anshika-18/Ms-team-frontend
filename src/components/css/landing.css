@@ -1,0 +1,115 @@
+.circle
+{
+    content: '';
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    background: linear-gradient(purple,purple);
+    border-radius: 50%;
+    top:-80px;
+    left:-50px
+}
+.columns-landing
+{
+    position: relative;
+    margin-top: 150px;
+    margin-left:80px ;
+}
+
+.text-head
+{
+    font-weight: 900;
+    font-size: 40px;
+}
+.change-color
+{
+    color:purple
+}
+
+.smaller-text
+{
+    margin-top: 50px;
+    font-size: 20px;
+    color: purple;
+    font-weight: 600;
+}
+
+.join-button
+{
+    border: 0;
+    background: none;
+    background-color:purple;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;   
+    color:white;
+    margin-top: 30px;
+    font-weight: 600;
+}
+.join-button:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 30px purple;
+    font-weight: 800;
+}
+
+.columns-landing
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.columns-landing-2
+{
+    background-color:rgb(235, 210, 245) ;
+    margin-top:-21vh;
+    height: 100vh;
+}
+
+.image1-out
+{
+    background-color:purple;
+    margin: 50px;
+    margin-top: 100px;
+}
+
+.image1
+{
+    height: 300px;
+    width: 500px;
+    margin-left:65px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+}
+
+.image1-head
+{
+    color:white;
+    font-size: 34px;
+    font-weight: 700;
+    padding: 30px;
+}
+
+.login-from-landing,.register-from-landing
+{
+    border:0;
+    background-color:purple;
+    height: 50px;
+    width: 120px;
+    margin-right: 20px;
+    float: right;
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.login-from-landing:hover,.register-from-landing:hover
+{
+    cursor: pointer;
+    box-shadow:0 0 20px blueviolet;
+    font-weight: 800;
+}
+
+
