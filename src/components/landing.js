@@ -26,10 +26,15 @@ export default function Landing({currentUserId}) {
                <div className="circle"></div>
                 <div className="columns-landing">
                   <div className="columns-landing-1">
-                  <div className="text-head">Here We Got <span className="change-color">Something</span></div>
-                  <div className="text-head">For <span className="change-color">Everyone.</span></div>
-                   <div className="smaller-text">Create Video Room. Stay Connected for unlimited duration</div>
+                  <div className="text-head">Stay Connected for <span className="change-color">unlimited Duration.</span></div>
+                  <div className="text-head">Create <span className="change-color">Video Room</span></div>
                    <button onClick={createRoom} className="join-button">Join Meeting</button>
+                   <div className="style">
+                     <div>Chat with your friends</div>
+                     <div>Enjoy unlimited Video Calling</div>
+                     <div>Enjoy screen sharing</div>
+                     <div>Stay Connected</div>
+                   </div>
                   </div>
                   <div className="columns-landing-2"> 
                   <div>

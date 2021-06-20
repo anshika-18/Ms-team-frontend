@@ -4,7 +4,7 @@ import './css/button.css'
 const style={
     position:'fixed',
     width:'100%',
-    padding:20,
+    padding:10,
     bottom:0,
     justifySelf:'center'
 }

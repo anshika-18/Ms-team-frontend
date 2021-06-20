@@ -9,6 +9,7 @@ import RemoteUserVideo from './remotevideo';
 import BottomControls from './buttonControls';
 import './css/room.css'
 
+import Login from './login'
 import Chat from './chat'
 
 
@@ -30,7 +31,7 @@ function Room ({peerInstance,currentUserId}) {
   useEffect(() => {
     setCurrentUserVideo();
     
-    const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
+    const socket=io.connect('http://ms-team-anshika-backend.herokuapp.com')
     socketInstance.current=socket;
 
     socketInstance.current.on('get:peerId', () => {

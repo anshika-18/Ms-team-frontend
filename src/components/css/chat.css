@@ -1,6 +1,6 @@
 .chat
 {
-    background-color: rgb(188, 192, 248);
+    background-color: rgb(184, 185, 189);
     height: 100vh;
     width: 25%;
     position: fixed;
@@ -38,21 +38,22 @@ input:focus
     float:right;
     background: none;
     border: 0;
-    color:rgb(70, 23, 70)
+    color:rgb(77, 70, 77)
 }
 
 .form-button i:hover
 {
     cursor: pointer;
-    box-shadow: 0 0 10px purple;
+    box-shadow: 0 0 10px rgb(77,70,77);
     border-radius: 50%;
 }
 
 .heading-chat
 {
     font-size: 25px;
-    font-weight: 600;
-    background-color:bisque;
+    font-weight: 700;
+    background-color:rgb(90, 90, 236);
+    color:white;
     padding: 15px;
 }
 
@@ -64,8 +65,8 @@ input:focus
 .new-text
 {
     max-width: 220px;
-    background-color:purple ;
-    color:white;
+    background-color:white ;
+    color:black;
     margin-top: 15px;
     padding: 10px;
     margin-left: 20px;
@@ -77,7 +78,7 @@ input:focus
 .my-text
 {
     max-width: 220px;
-    background-color:green;
+    background-color:rgb(83, 83, 85);
     color:white;
     margin-top: 15px;
     padding: 10px;
