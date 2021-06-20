@@ -1,5 +1,5 @@
-import React,{useState,useEffect,useCallback,useRef}  from 'react';
-import {BrowserRouter,Switch,Route,RouteComponentProps,useParams} from 'react-router-dom'
+import React,{useState,useEffect,useRef}  from 'react';
+import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import PeerJs from 'peerjs'
 import {v4 as uuid} from 'uuid'
 
