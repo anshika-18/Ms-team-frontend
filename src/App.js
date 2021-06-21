@@ -5,12 +5,15 @@ import {v4 as uuid} from 'uuid'
 
 import Landing from './components/landing'
 import Room from './components/room'
+import Login from './components/login'
 
 import './App.css'
 function App() {
 
   const peerInstance=useRef(null)
   const [currentUserId,setCurrentUserId]=useState('');
+  const [theme,setTheme]=useState(false)
+
 
   useEffect(()=>{
     const userId=uuid()
@@ -29,8 +32,9 @@ function App() {
    <div>
       <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={(props) => <Landing
+        <Route exact path="/" component={(props)=> <Landing
             {...props}
+            theme={theme} setTheme={()=>setTheme(!theme)}
             currentUserId={currentUserId}
           />
         }>
@@ -38,10 +42,12 @@ function App() {
         <Route exact path="/rooms/:roomId" component={(props) => <Room
             {...props}
             currentUserId={currentUserId}
+            theme={theme} setTheme={()=>setTheme(!theme)}
             peerInstance={peerInstance.current}
           />
         }>
         </Route>
+        <Route exact path="/login" component={(props)=><Login></Login>}></Route>
       </Switch>
     </BrowserRouter>
    </div>

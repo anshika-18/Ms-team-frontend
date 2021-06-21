@@ -1,14 +1,18 @@
 import React from 'react'
 import './css/login.css'
+import {Redirect,useHistory} from 'react-router-dom'
 
-export default function login(props) {
+export default function Login(props) {
 
+    const history=useHistory()
     console.log(props)
     const onSubmit=(e)=> {
         e.preventDefault();
-        props.setAuth(true);
+        
+        localStorage.setItem('token','helloo')
+        props.setToken('helloo')
+        //console.log('hello')
     }
-
     return (
         <div className="login">
             <div className="login_wrapper">

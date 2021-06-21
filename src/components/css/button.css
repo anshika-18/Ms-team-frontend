@@ -76,3 +76,90 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+.dark-outer-button
+{
+    background-color:black;
+}
+
+.centered
+{
+    margin-left: 30%;
+}
+.centered button
+{
+    margin-right: 20px;
+}
+
+
+.dark-primary
+{
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    border: 0;
+    background-color: yellow;
+    color:black;
+    border-radius:50%;
+}
+.dark-danger
+{
+    background-color:firebrick ;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    color:white;
+    font-size: 25px;
+    border-radius:50%;
+}
+
+.dark-share,.leave
+{
+    border: 0;
+    height: 45px;
+    width: 120px;
+    font-weight: 800;
+    color:white
+}
+.leave 
+{
+    background-color: firebrick;
+    border-radius: 10px;
+}
+.dark-share 
+{
+    background-color: rgb(29, 138, 19);
+    border-radius: 10px;
+}
+.dark-share:hover
+{
+    box-shadow: 0 0 10px rgb(29, 138, 19);
+    cursor: pointer;
+}
+
+.leave:focus,.share:focus,.primary:focus,.danger:focus
+{
+    outline: none;
+
+}
+
+.dark-danger:hover,.dark-leave:hover
+{
+    box-shadow: 0 0 15px firebrick;
+    cursor: pointer;
+}
+
+.dark-primary:hover
+{
+    box-shadow: 0 0 15px yellow;
+    cursor: pointer;
+}
+

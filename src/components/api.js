@@ -33,3 +33,17 @@ export const joinRoomAPI=async(roomId,participant)=>{
 const data=response.json()
 return data;
 }
+
+export const sendMail=async(send)=>{
+    const response=await fetch('https://ms-team-anshika-backend.herokuapp.com/api/send',{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json'
+        },
+        body:JSON.stringify(send)
+    });
+
+    const data=response.json()
+    return data;
+}

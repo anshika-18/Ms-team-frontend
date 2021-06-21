@@ -1,0 +1,99 @@
+.connect
+{
+    background-image:linear-gradient(rgb(230, 230, 230),rgb(88, 86, 196)) ;
+    height: 60vh;
+    width: 25%;
+    margin-top: 50px;
+    position: fixed;
+    z-index: 11;
+    margin-left: -7.5%;
+    border-radius: 0 0 20px 20px;
+    border:2px solid rgb(88, 86, 196);
+    box-shadow: 0 0 10px rgb(88, 86, 196);
+}
+
+.connect-out-button
+{
+    height: 50px;
+    width: 60px;
+    color: white;
+    font-size: 30px;
+    background: none;
+    border:0;
+    border-right:1px solid rgb(183, 183, 197) ;
+}
+.connect-out-button:hover
+{
+    background-color: rgb(88, 86, 196);
+    cursor: pointer;
+}
+.connect-head
+{
+    height: 70px;
+    color:black;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 700;
+    padding-top: 20px;
+}
+
+.connect-form
+{
+    display: grid;
+    grid-template-columns: auto;
+    height:50vh;
+    background-size: contain;
+}
+
+.connect-form label
+{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px;
+    height: 50px;
+}
+
+
+.connect-input 
+{
+    margin-left: 10%;
+    margin-right: 10%;
+    border:0;
+    background: none;
+    height: 35px;
+    border-bottom: 2px solid black;
+    font-size: 17px;
+    transition: 0.3s linear;
+}
+
+.connect-input::placeholder
+{
+    color: white;
+    opacity: 0.6;
+}
+.connect-input:focus
+{
+    outline: none;
+    padding-bottom: 15px;
+}
+
+
+.send-connect
+{
+    margin-top: 30px;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding: 10px;
+    font-size: 20px;
+    height: 50px;
+    border:0;
+    background: none;
+    color:white;
+    background-color: rgb(88, 86, 196);
+}
+
+.send-connect:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 10px black;
+}
