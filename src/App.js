@@ -5,7 +5,7 @@ import {v4 as uuid} from 'uuid'
 
 import Landing from './components/landing'
 import Room from './components/room'
-import Login from './components/login'
+import Login from './components/auth/login'
 
 import './App.css'
 function App() {

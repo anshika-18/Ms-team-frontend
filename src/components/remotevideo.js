@@ -20,7 +20,8 @@ export default function RemoteUserVideo(props) {
 
     return (
         <div className="column">
-            <video className={props.theme?"dark-video":"video"} width={640} height={480} ref={userVideoRef} id="video" />
+            <video className={props.theme?"dark-video":"video"}  ref={userVideoRef} id="video" />
+            <div className="video-name">{props.name}</div>
         </div>
     )
 }

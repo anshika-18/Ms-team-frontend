@@ -1,4 +1,4 @@
-.login {
+.register {
     position: relative;
     width: 100%;
     background-color: #fff;
@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-.login::before
+.register::before
 {
   content: "";
   position: absolute;
@@ -47,17 +47,17 @@
     margin-bottom: 10px;
   }
   
-  .login-image
+  .register-image
   {
     width: 100%;
     transition: transform 1.1s ease-in-out;
     transition-delay: 0.4s;
-    height: 400px;
-    margin-top: 300px;
+    height: 500px;
+    margin-top: 200px;
     margin-right: 100px;
   }
 
-.input-login {
+.input-register {
     max-width: 380px;
     width: 100%;
     background-color: #f0f0f0;
@@ -69,7 +69,7 @@
     padding: 0 0.4rem;
     position: relative;
   }
-  .input-login i {
+  .input-register i {
     text-align: center;
     line-height: 55px;
     color: #acacac;
@@ -77,7 +77,7 @@
     font-size: 1.1rem;
   }
   
-  .input-login input {
+  .input-register input {
     background: none;
     outline: none;
     border: none;
@@ -87,12 +87,12 @@
     color: #333;
   }
   
-  .input-login input::placeholder {
+  .input-register input::placeholder {
     color: #aaa;
     font-weight: 500;
   }
 
-  .submit-login
+  .submit-register
   {
     width: 150px;
     background-color: #5995fd;
@@ -108,27 +108,27 @@
     transition: 0.5s;
   }
 
-
-
-  .submit-login:hover {
+  .submit-register:hover {
     background-color: #4d84e2;
   }
+  
 
   .login-profile
   {
       height: 150px;
   }
   @media (max-width: 570px) {
-    
-    .login-image {
+   
+  
+    .register-image {
       display: none;
     }
     
-    .login{
+    .register{
       padding: 1.5rem;
     }
   
-    .login:before {
+    .register:before {
       bottom: 72%;
       left: 50%;
     }

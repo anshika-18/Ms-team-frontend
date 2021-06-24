@@ -25,6 +25,8 @@ export default function Chat(props) {
             outer.append(newmess)
         setData("");   
     })
+
+
     useEffect(()=>{
         props.socketInstance?.off('recieve-message').on('recieve-message',(message,room)=>{
             if(room===roomId)
@@ -44,10 +46,6 @@ export default function Chat(props) {
 
                 newmess.className="new-text";
                 outer.append(newmess)
-                console.log(outer.scrollHeight)
-                console.log(outer.clientHeight)
-                console.log(outer.scrollTop)
-
             }
         })
     })

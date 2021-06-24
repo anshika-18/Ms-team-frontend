@@ -5,11 +5,9 @@
     height: 100%;
     min-height: 100vh;
 }
-
 .room-container
 {
-    display: grid;
-    grid-template-columns: 75% 25%;
+    display: flex;
 }
 
 .video
@@ -20,6 +18,15 @@
     border-radius: 30px;
 }
 
+.video-name
+{
+    background: black;
+    color:white;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    margin-right: 200px;
+}
 .screen
 {
     height: 100%;
@@ -29,24 +36,57 @@
 .columns
 {
     display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90vw;
     padding-top:20px;
     padding-left:20px;
-    margin-bottom: 150px;
+    margin-bottom: 140px;
+}
+.columns-open
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 70vw;
+    padding-top:20px;
+    padding-left:20px;
+    margin-bottom: 140px;
 }
 .columns div
 {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 
 
+@media screen and ( max-width:600px){
+    .columns
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90vw;
+    padding-top:20px;
+    padding-left:10px;
+    margin-bottom: 140px;
+}
+.columns-open
+{
+    display: none;
+}
+.video
+{
+    height: 190px;
+    width: 255px;
+}
+.video-name
+{
+    margin-right: 100px;
+}
 
-
-
-
-
+}
 
 
 
@@ -65,8 +105,7 @@
 
 .dark-room-container
 {
-    display: grid;
-    grid-template-columns: 75% 25%;
+    display: flex;
 }
 
 .dark-video
@@ -88,11 +127,22 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 90vw;
     padding-top:20px;
     padding-left:20px;
-    margin-bottom: 150px;
+    margin-bottom: 140px;
+}
+.dark-columns-open
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 70vw;
+    padding-top:20px;
+    padding-left:20px;
+    margin-bottom: 140px;
 }
 .dark-columns div
 {
-    margin-top: 20px;
+    margin-top: 10px;
 }

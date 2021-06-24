@@ -1,15 +1,8 @@
 .outer-button
 {
     background-color: black;
-}
-
-.centered
-{
-    margin-left: 30%;
-}
-.centered button
-{
-    margin-right: 20px;
+    display: grid;
+    grid-template-columns: 30% 55% 15%;
 }
 
 
@@ -77,7 +70,24 @@
 
 
 
-
+@media screen and ( max-width:600px) {
+    .outer-button
+    {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .time
+    {
+        display: none;
+    }
+    .centered
+    {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+  
+}
 
 
 
@@ -88,12 +98,10 @@
 .dark-outer-button
 {
     background-color:black;
+    display: grid;
+    grid-template-columns: 30% 55% 15%;
 }
 
-.centered
-{
-    margin-left: 30%;
-}
 .centered button
 {
     margin-right: 20px;

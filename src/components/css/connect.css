@@ -1,15 +1,22 @@
 .connect
 {
-    background-image:linear-gradient(rgb(230, 230, 230),rgb(88, 86, 196)) ;
+    background-image:linear-gradient(pink,skyblue) ;
     height: 60vh;
     width: 25%;
     margin-top: 50px;
     position: fixed;
-    z-index: 11;
-    margin-left: -7.5%;
-    border-radius: 0 0 20px 20px;
-    border:2px solid rgb(88, 86, 196);
-    box-shadow: 0 0 10px rgb(88, 86, 196);
+    right: 0;
+    border-radius: 20px 0 20px 20px;
+    border:2px solid black;
+    box-shadow: 0 0 10px pink;
+}
+
+@media screen and ( max-width:600px) {
+    .connect
+    {
+        width: 100vw;
+        height: 65vh;
+    }
 }
 
 .connect-out-button
@@ -20,7 +27,6 @@
     font-size: 30px;
     background: none;
     border:0;
-    border-right:1px solid rgb(183, 183, 197) ;
 }
 .connect-out-button:hover
 {

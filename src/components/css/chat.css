@@ -4,15 +4,22 @@
     height: 100vh;
     width: 25%;
     position: fixed;
-    z-index: 11;
+    right: 0;
 }
 
+@media screen and (max-width:600px) {
+    .chat
+    {
+        width: 100vw;
+    }
+}
 .bottom-box
 {
     position: absolute;
     bottom: 15px;
     margin-left: 20px;
 }
+
 
 .hide-chat
 {
@@ -157,7 +164,7 @@
     height: 100vh;
     width: 25%;
     position: fixed;
-    z-index: 11;
+    right: 0;
 }
 
 .bottom-box
