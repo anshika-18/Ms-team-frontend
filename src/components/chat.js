@@ -6,13 +6,25 @@ export default function Chat(props) {
 
     const [data,setData]=useState("")
     const {roomId}=useParams()
-    
+    const hex=['#ffff00','#ff0000','#cc0066','#99ff33','#ff0066','#0033cc','#ff3399','#ff6600'];
+
+    function getRandomNumber(){
+        return Math.floor(Math.random()*hex.length)
+    }
+
     const send=useCallback(()=>{
-        props.socketInstance?.emit('send-message',data,roomId)
+        props.socketInstance?.emit('send-message',data,roomId,props.name)
         const outer=document.getElementById('chatbox')
             const newmess=document.createElement('div')
-            newmess.textContent=data;
+            const nameDiv=document.createElement('div')
+            nameDiv.textContent="You";
+            nameDiv.className="name-div"
             
+            nameDiv.style.color=hex[getRandomNumber()]
+            newmess.append(nameDiv)
+            const dataDiv=document.createElement('div')
+            dataDiv.textContent=data;
+            newmess.append(dataDiv)
             const smallSpan=document.createElement('div')
             const date=new Date();
             const x=date.toLocaleString('en-us',{hour:'numeric',hour12:'true'})
@@ -20,7 +32,6 @@ export default function Chat(props) {
             smallSpan.textContent=time;
             smallSpan.className="smallspan"
             newmess.append(smallSpan)
-            
             newmess.className="my-text";
             outer.append(newmess)
         setData("");   
@@ -28,13 +39,21 @@ export default function Chat(props) {
 
 
     useEffect(()=>{
-        props.socketInstance?.off('recieve-message').on('recieve-message',(message,room)=>{
+        props.socketInstance?.off('recieve-message').on('recieve-message',(message,room,name)=>{
             if(room===roomId)
             {
                 console.log(message)
                 const outer=document.getElementById('chatbox')
                 const newmess=document.createElement('div')
-                newmess.textContent=message
+                const nameDiv=document.createElement('div')
+                nameDiv.textContent=name;
+                nameDiv.className="name-div"
+            
+                nameDiv.style.color=hex[getRandomNumber()]
+                newmess.append(nameDiv)
+                const dataDiv=document.createElement('div')
+                dataDiv.textContent=message;
+                newmess.append(dataDiv)
 
                 const smallSpan=document.createElement('div')
                 const date=new Date();

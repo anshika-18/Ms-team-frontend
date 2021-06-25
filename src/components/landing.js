@@ -27,7 +27,7 @@ export default function Landing({currentUserId,setTheme,theme}) {
 
     return (
         <div>
-             <div className={theme?"container-outside":"container"}>
+             <div className={theme?"container-outside":"container-1"}>
                <div className={theme?"dark-circle":"circle"}></div>
                
                 <div className={theme?"dark-landing":"columns-landing"}>

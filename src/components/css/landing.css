@@ -23,7 +23,9 @@
 .text-head
 {
     font-weight: 900;
-    font-size: 40px;
+    font-size: 45px;
+    font-family: 'Calistoga', cursive;
+    
 }
 .change-color
 {
@@ -41,9 +43,10 @@
     font-size: 20px;   
     color:white;
     margin-top: 20px;
-    font-weight: 600;
+    font-weight: 800;
     border-radius: 10px 0 10px 0;
     transition: 0.5s linear;
+    font-family:freestyle;
 }
 .join-button:hover
 {
@@ -95,10 +98,11 @@
 .image1-head
 {
     color:black;
-    font-size: 34px;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: 800;
     padding: 30px;
-    text-shadow: 2px 2px white;
+    text-shadow: 2px 2px white; 
+    font-family: freestyle; 
 }
 
 
@@ -119,6 +123,7 @@
     border-radius: 20px;
     text-decoration: none;
     transition: 0.5s linear;
+    font-family: 'Cherry Swash', cursive;
 }
 
 .login-from-landing:hover,.register-from-landing:hover
@@ -167,7 +172,7 @@
 }
 .fa-cloud-moon
 {
-    color:rgb(65, 174, 218)
+    color:rgb(88, 65, 218)
 }
 .theme-change:hover
 {
@@ -202,11 +207,13 @@
 {
     font-size: 30px;
     font-weight: 700;
+    
 }
 .contact-text-main
 {
     font-size: 20px;
     margin-top: 20px;
+    font-family: 'Merienda One', cursive;
 }
 .contact-email
 {
@@ -231,6 +238,7 @@
     margin-left: 25%;
     font-size: 45px;
     font-weight: 600;
+    
 }
 .about-main
 {
@@ -242,10 +250,13 @@
 .about-main span
 {
     font-size: 35px;
+    font-family: 'Pattaya', sans-serif;
+    
 }
 .about-main
 {
     font-size: 20px;
+    
 }
 .about-outer
 {
@@ -291,6 +302,8 @@
     font-size: 40px;
     font-weight: 700;
     text-align: center;
+    
+    
 }
 .connect-landing
 {
@@ -304,8 +317,9 @@
 .connect-main-text
 {
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
+    font-family: 'Crimson Text', serif;
 }
 
 
@@ -350,7 +364,8 @@
 .dark-text-head
 {
     font-weight: 900;
-    font-size: 40px;
+    font-size: 45px;
+    font-family: 'Calistoga', cursive;
     color:white;
 }
 .dark-change-color
@@ -370,6 +385,7 @@
     font-weight: 600;
     border-radius: 10px 0 10px 0;
     transition: 0.5s linear;
+    font-family:freestyle;
 }
 .dark-join-button:hover
 {
@@ -422,9 +438,10 @@
 .dark-image1-head
 {
     color:black;
-    font-size: 34px;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: 800;
     padding: 30px;
+    font-family: freestyle; 
 }
 
 
@@ -444,6 +461,7 @@
     text-decoration: none;
     border-radius: 20px;
     transition: 0.5s linear;
+    font-family: 'Cherry Swash', cursive;
 }
 
 .dark-login:hover,.dark-register:hover
@@ -503,12 +521,14 @@
     font-size: 30px;
     font-weight: 700;
     color: black;
+    
 }
 .dark-contact-text-main
 {
     font-size: 20px;
     margin-top: 20px;
     color: black;
+    font-family: 'Merienda One', cursive;
 }
 .dark-contact-email
 {
@@ -544,6 +564,7 @@
 .dark-about-main span
 {
     font-size: 35px;
+    font-family: 'Pattaya', sans-serif;
 }
 .dark-about-main
 {
@@ -607,8 +628,9 @@
 .dark-connect-main-text
 {
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
+    font-family: 'Crimson Text', serif;
 }
 
 

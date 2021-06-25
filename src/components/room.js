@@ -286,54 +286,57 @@ function screenShare(){
 return (
   <div>
    {
-     token?
-     <div className={theme?"dark-Room":"Room"}>
-        <BottomControls
-       onLeave={() => {
-         socketInstance?.current?.disconnect()
-         history.push(`/`)
-       }}
-       toggleMute={() => setMuted(!muted)}
-       toggleVideoMute={() => setVideoMuted(!videoMuted)}
-       muted={muted}
-       videoMuted={videoMuted}
-       screenShare={()=>screenShare()}
-       mesharing={mesharing}
-       stopSharing={()=>{stopSharing()}}
-       theme={theme}
-     />
-     <div className={theme?"dark-room-container":"room-container"}>
-       <div className={theme?chat?"dark-columns-open":"dark-columns":chat?"columns-open":"columns"}>
-         {shared
-         ?
-         <div >
-         <video className={theme?"dark-screen":"screen"} ref={screen} muted></video>
-       </div>
-       :
-       null
-       }
-         <div className="column">
-           <video className={theme?"dark-video":"video"} ref={currentUserVideoRef} muted/>
-           <div className="video-name">You</div>
+      token
+      ?
+      <div className={theme?"dark-Room":"Room"}>
+          
+          <div className={theme?"dark-room-container":"room-container"}>
+              <div className={theme?chat?"dark-columns-open":"dark-columns":chat?"columns-open":"columns"}>
+              {
+                shared
+                ?
+                <div>
+                  <video className={theme?"dark-screen":"screen"} ref={screen} muted></video>
+                </div>
+                :
+                null
+              }
+              <div className="column">
+                  <video className={theme?"dark-video":"video"} ref={currentUserVideoRef} muted/>
+                  <div className="video-name">You</div>
+              </div>
+              {
+                  participants.map(
+                  participant => (
+                    <RemoteUserVideo theme={theme}
+                    key={participant.userId}
+                    remoteStream={participant.mediaStream}
+                    name={participant.name}
+                    />
+                  )
+                )
+              }
+
          </div>
-         {
-           participants.map(
-             participant => (
-               <RemoteUserVideo theme={theme}
-                 key={participant.userId}
-                 remoteStream={participant.mediaStream}
-                 name={participant.name}
-               />
-             )
-           )
-         }
-       </div>
-       <div>
-         <UpperButtons theme={theme} socketInstance={socketInstance.current} chat={chat} setChat={setChat} />
-     </div>
+         <BottomControls
+          onLeave={() => {
+          socketInstance?.current?.disconnect()
+          history.push(`/`)
+          }}
+          toggleMute={() => setMuted(!muted)}
+          toggleVideoMute={() => setVideoMuted(!videoMuted)}
+          muted={muted}
+          videoMuted={videoMuted}
+          screenShare={()=>screenShare()}
+          mesharing={mesharing}
+          stopSharing={()=>{stopSharing()}}
+          theme={theme}
+          />
+        <div>
+            <UpperButtons name={name} theme={theme} socketInstance={socketInstance.current} chat={chat} setChat={setChat} />
+        </div>
      </div>
     
-     
    </div>
    :
    <div>

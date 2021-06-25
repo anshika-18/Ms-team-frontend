@@ -70,27 +70,6 @@
 
 
 
-@media screen and ( max-width:600px) {
-    .outer-button
-    {
-        display: grid;
-        grid-template-columns: auto;
-    }
-    .time
-    {
-        display: none;
-    }
-    .centered
-    {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
-  
-}
-
-
-
 
 
 
@@ -170,4 +149,32 @@
     box-shadow: 0 0 15px yellow;
     cursor: pointer;
 }
+
+
+
+
+@media screen and ( max-width:600px) {
+    .share,.dark-share
+    {
+        display: none;
+    }
+    .outer-button,.dark-outer-button
+    {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .time
+    {
+        display: none;
+    }
+    .centered
+    {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    
+  
+}
+
 

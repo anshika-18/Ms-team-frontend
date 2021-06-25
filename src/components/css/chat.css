@@ -5,13 +5,14 @@
     width: 25%;
     position: fixed;
     right: 0;
-}
+    animation-name:example ;
+    animation-duration: 1s;
 
-@media screen and (max-width:600px) {
-    .chat
-    {
-        width: 100vw;
-    }
+}
+@keyframes example
+{
+    from{opacity: 0;}
+    to{opacity: 1;}
 }
 .bottom-box
 {
@@ -20,10 +21,9 @@
     margin-left: 20px;
 }
 
-
 .hide-chat
 {
-    display: none;
+    visibility: hidden;
 }
 
 .form-input
@@ -42,12 +42,12 @@
     box-shadow: 0 0 15px blue;
 }
 
+
 .form-button
 {
     height: 50px;
     width: 70px;
     font-size: 50px;
-    float:right;
     background: none;
     border: 0;
     color:rgb(77, 70, 77)
@@ -165,6 +165,13 @@
     width: 25%;
     position: fixed;
     right: 0;
+    animation-name: example;
+    animation-duration: 1s;
+}
+@keyframes example
+{
+    from{opacity: 0;}
+    to{opacity: 1;}
 }
 
 .bottom-box
@@ -200,7 +207,6 @@
     height: 50px;
     width: 70px;
     font-size: 50px;
-    float:right;
     background: none;
     border: 0;
     color:rgb(146, 18, 78);
@@ -269,7 +275,7 @@
 .my-text
 {
     max-width: 220px;
-    background-color:rgb(83, 83, 85);
+    background-color:black;
     color:white;
     margin-top: 15px;
     padding: 10px;
@@ -283,4 +289,18 @@
     overflow-y: scroll;
     height: 80vh;
     scroll-behavior: smooth;
+}
+
+.name-div
+{
+    font-size: 15px;
+    opacity: 1;
+    font-weight: 700;
+}
+
+@media screen and (max-width:600px) {
+    .chat,.dark-chat
+    {
+        width: 100vw;
+    }
 }

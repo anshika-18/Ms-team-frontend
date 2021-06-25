@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{useState,useEffect,useRef}  from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import PeerJs from 'peerjs'
