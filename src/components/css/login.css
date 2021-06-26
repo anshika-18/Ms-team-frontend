@@ -108,7 +108,17 @@
     transition: 0.5s;
   }
 
+  .new-user
+  {
+    border:0;
+    background: 0;
+    color:#4481eb
+  }
 
+  .new-user:hover
+  {
+    text-decoration: underline;
+  }
 
   .submit-login:hover {
     background-color: #4d84e2;

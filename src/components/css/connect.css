@@ -1,11 +1,11 @@
 .connect
 {
-    background-image:linear-gradient(pink,skyblue) ;
+    background-image:linear-gradient(rgb(255, 251, 192),rgb(235, 135, 135)) ;
     height: 60vh;
-    width: 25%;
+    width: 20%;
     margin-top: 50px;
     position: fixed;
-    right: 0;
+    right: 60px;
     border-radius: 20px 0 20px 20px;
     border:2px solid black;
     box-shadow: 0 0 10px pink;

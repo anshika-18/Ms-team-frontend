@@ -1,0 +1,44 @@
+.participant-outer
+{
+    position: fixed;
+    margin-top: 100px;
+    height: 74vh;
+    width: 20%;
+    right:60px;
+    background-color: rgb(3, 3, 3);
+    border-radius: 20px;
+}
+.raise-head
+{
+    background-color:rgb(180, 179, 179);
+    padding:20px;
+    border-radius: 20px 20px 0 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.participants-array div
+{
+    display: flex;
+    margin: 10px;
+    border-radius: 20px;
+}
+.participants-array div .logo
+{
+    background-color:black;
+    font-size: 30px;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.participants-array div .name
+{
+    font-size: 20px;
+    color:black;
+    justify-content: center;
+    text-align: center;
+
+}

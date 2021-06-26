@@ -1,13 +1,15 @@
-import {Tooltip,OverlayTrigger,Popover} from 'react-bootstrap'
-import React,{useState,useEffect} from 'react'
+import {OverlayTrigger,Popover} from 'react-bootstrap'
+import React,{useState} from 'react'
 import Chat from './chat'
 import Connect from './connect'
 import './css/upperButtons.css'
+import Participants from './participants'
 
 
 export default function UpperButtons(props) {
 
     const [connect,setConnect]=useState(false)
+    const [show,setShow]=useState(false)
 
     return (
         <div>
@@ -53,11 +55,17 @@ export default function UpperButtons(props) {
                          <i className="fas fa-share-alt"></i>
                     </button>
                 </OverlayTrigger>
-                
+                {
+                    show
+                    ?<Participants setNewRaise={props.setNewRaise}
+                    setLowerHand={props.setLowerHand} newRaise={props.newRaise} lowerHand={props.lowerHand}></Participants>
+                    :
+                    null
+                }
                 <OverlayTrigger
                 placement="left"
                 overlay={<Popover id="popover-basic"><Popover.Title as="h3">Participants</Popover.Title></Popover>}>
-                    <button className="participants-button">
+                    <button className="participants-button" onClick={()=>setShow(!show)}>
                         <i class="fas fa-users"></i>
                     </button>
                 </OverlayTrigger>

@@ -12,6 +12,7 @@ export default function Chat(props) {
         return Math.floor(Math.random()*hex.length)
     }
 
+    //send message
     const send=useCallback(()=>{
         props.socketInstance?.emit('send-message',data,roomId,props.name)
         const outer=document.getElementById('chatbox')
@@ -37,8 +38,9 @@ export default function Chat(props) {
         setData("");   
     })
 
-
+    //recieve message
     useEffect(()=>{
+        console.log('chat js')
         props.socketInstance?.off('recieve-message').on('recieve-message',(message,room,name)=>{
             if(room===roomId)
             {

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {Tooltip,OverlayTrigger,Popover} from 'react-bootstrap'
 import MeetingDetails from './meeting-details'
 import './css/button.css'
+import {useParams} from 'react-router-dom'
 
 const style={
     position:'fixed',
@@ -12,27 +13,64 @@ const style={
 }
 
 export default function BottomControls(props){
-    const [time,setTime]=useState('')
+    const [duration,setDuration]=useState('')
+    const [time,setTime]=useState(0)
+    const {roomId}=useParams()
 
     useEffect(() => {
         const set=setInterval(()=>{
-            const temp=new Date()
-            const x=temp.toLocaleString('en-us',{hour:'numeric',hour12:'true'})
-            let min=temp.getMinutes()
-            if(min<10)
+            setTime(time+1)
+            let s=time%60;
+            let m=Math.floor((time/60));
+            let h=Math.floor((time/3600));
+            if(m<10)
             {
-                min="0"+min;
+                m='0'+m;
             }
-            let hours=temp.getHours()%12;
-            if(hours<10)
+            if(h<10)
             {
-                hours="0"+hours
+                h='0'+h;
             }
-            setTime(hours+" : "+min+" "+x[x.length-2]+x[x.length-1])
+            if(s<10)
+            {
+                s='0'+s;
+            }
+            setDuration(h+" : "+m+" : "+s)
         },1000)
         
        return()=>clearInterval(set) 
-    },[])
+    },[time])
+
+    const raiseHand=()=>{
+        
+
+        props.socketInstance?.emit('raise-hand',props.name,roomId)
+        props.setRaised(true)
+    }
+
+    useEffect(()=>{
+        props.socketInstance?.off('hand-raised').on('hand-raised',(name,room)=>{
+           if(roomId===room)
+           {
+            console.log(name+" shared hand")
+            props.setNewRaise(name)
+           }
+        })
+
+        props.socketInstance?.off('hand-lowered').on('hand-lowered',(name,room)=>{
+            if(roomId===room)
+            {
+                console.log(name+" lowered hand")
+                props.setLowerHand(name)
+            }
+        })
+
+    })
+
+    const lowerHand=()=>{
+        props.socketInstance?.emit('lower-hand',props.name,roomId)
+        props.setRaised(false)
+    }
 
     return(
     <div className={props.theme?"dark-outer-button":"outer-button"}  style={style}>
@@ -40,7 +78,7 @@ export default function BottomControls(props){
             <OverlayTrigger
             placement="top"
             overlay={<Popover id="popover-basic"><Popover.Title as="h3">Time</Popover.Title></Popover>}>
-                <div className="time">{time}</div>
+                <div className="time">--{duration}--</div>
             </OverlayTrigger>
         </div>
 
@@ -80,6 +118,12 @@ export default function BottomControls(props){
             placement="top"
             overlay={<Popover id="popover-basic"><Popover.Title as="h3">Leave Call</Popover.Title></Popover>}>
             <button className="leave mr-2" onClick={props.onLeave}>Leave call</button>
+        </OverlayTrigger>
+        <OverlayTrigger
+            placement="top"
+            overlay={<Popover id="popover-basic"><Popover.Title as="h3">Raise Hand</Popover.Title></Popover>}>
+                {props.raised?<button className="raise-hand" onClick={()=>lowerHand()}>
+                    <i class="fas fa-hand-point-up"></i></button>:<button className="raise-hand" onClick={()=>raiseHand()}><i class="fas fa-hand-paper"></i></button>}
         </OverlayTrigger>
     </div>
     <MeetingDetails ></MeetingDetails>

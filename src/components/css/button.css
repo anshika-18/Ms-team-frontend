@@ -149,8 +149,24 @@
     box-shadow: 0 0 15px yellow;
     cursor: pointer;
 }
-
-
+.raise-hand
+{
+    background: 0;
+    border: 0;
+    font-size: 40px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+.raise-hand i
+{
+    color:rgb(202, 171, 34);
+    transition: 0.3s linear;
+}
+.raise-hand i:hover
+{
+    color:rgb(194, 158, 0);
+    font-size: 43px;
+}
 
 
 @media screen and ( max-width:600px) {
@@ -169,9 +185,8 @@
     }
     .centered
     {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
     }
     
   

@@ -45,8 +45,11 @@ export default function Login(props) {
                             <i class="fas fa-lock"></i>
                             <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" />
                         </div>
+                        <button className="new-user" onClick={props.setLogin}>Do not have an Account?</button>
                         <input className="submit-login" type="submit" value="Login" onClick={(e)=>{onSubmit(e)}} />
+                        
                  </form>
+                
           </div>
         </div>
     )

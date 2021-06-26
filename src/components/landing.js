@@ -1,6 +1,7 @@
 import React,{useCallback,useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import './css/landing.css'
+import question2 from './img/question2.svg'
 
 
 import {createRoomAPI} from './api'
@@ -97,7 +98,7 @@ export default function Landing({currentUserId,setTheme,theme}) {
 
                 <div className={theme?"dark-contact-landing":"contact-landing"} id="contact">
                   <div className="contact-up">
-                    <img src="https://microsoft.acehacker.com/engage2021/img/demo-content/images/email.png"></img>
+                    <img src={question2}></img>
                     <div className="contact-text">
                       <div className={theme?"dark-contact-text-head":"contact-text-head"}>Email Us</div>
                       <div className={theme?"dark-contact-text-main":"contact-text-main"}>Write us if you have any queries.</div>

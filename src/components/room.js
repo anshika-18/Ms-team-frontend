@@ -21,6 +21,10 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
   const currentUserVideoRef = useRef(null);
   const socketInstance = useRef(null);
   const [chat,setChat]=useState(false)
+  const [raised,setRaised]=useState(false)
+
+  const [newRaise,setNewRaise]=useState('');
+  const [lowerHand,setLowerHand]=useState('');
 
   const screen=useRef(null)
   const [shared,isShared]=useState(false)
@@ -32,6 +36,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
   const [participants, setParticipants] = useState([]);
 
   const [name,setName]=useState('')
+  const [login,setLogin]=useState(false)
 
   const history=useHistory()
   const { roomId } = useParams();
@@ -135,6 +140,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     console.log("video - ",videoTracks)
     if (videoTracks[0]) {
       videoTracks[0].enabled = !videoMuted
+
     }
 
   }, [videoMuted])
@@ -320,8 +326,11 @@ return (
          </div>
          <BottomControls
           onLeave={() => {
-          socketInstance?.current?.disconnect()
-          history.push(`/`)
+              const videoTracks = currentMediaStream.current.getVideoTracks();
+              videoTracks[0].stop()
+              //console.log(roomId)
+              socketInstance?.current?.disconnect(roomId)
+              history.push(`/`)
           }}
           toggleMute={() => setMuted(!muted)}
           toggleVideoMute={() => setVideoMuted(!videoMuted)}
@@ -331,9 +340,20 @@ return (
           mesharing={mesharing}
           stopSharing={()=>{stopSharing()}}
           theme={theme}
+          socketInstance={socketInstance.current}
+          name={name}
+          raised={raised}
+          setRaised={(value)=>setRaised(value)}
+          setNewRaise={(value)=>setNewRaise(value)}
+          setLowerHand={(value)=>setLowerHand(value)}
           />
         <div>
-            <UpperButtons name={name} theme={theme} socketInstance={socketInstance.current} chat={chat} setChat={setChat} />
+            <UpperButtons
+              setNewRaise={(value)=>setNewRaise(value)}
+              setLowerHand={(value)=>setLowerHand(value)}
+               newRaise={newRaise} lowerHand={lowerHand} name={name} 
+               theme={theme} socketInstance={socketInstance.current} 
+               chat={chat} setChat={setChat} />
         </div>
      </div>
     
@@ -341,7 +361,11 @@ return (
    :
    <div>
    { 
-      <Login token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Login>
+      login
+      ?
+      <Register setLogin={()=>setLogin(!login)}  token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Register>
+      :
+      <Login  setLogin={()=>setLogin(!login)} token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Login>
    }
    </div>
    } 
