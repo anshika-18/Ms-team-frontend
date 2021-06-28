@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import './css/partcipants.css'
 
-export default function Participants({newRaise,lowerHand,setNewRaise,setLowerHand}) {
+export default function Participants({newRaise,lowerHand,setNewRaise,setLowerHand,show}) {
 
     const background=['#ccfcef','#fce3cc','#fcfacc','#d9fccc','#ffe6fc','#f0dcfc','#dee3ff']
     const text=['#e31414','yellow','lawngreen','#02eaf2','#d103ff','#ff0379','#2d03ff']
@@ -36,7 +36,7 @@ export default function Participants({newRaise,lowerHand,setNewRaise,setLowerHan
     },[newRaise,lowerHand])
 
     return (
-        <div className="participant-outer">
+        <div className={show?"participant-outer":"hide-participants"}>
             <div className="raise-head">Raised Hand</div>
            <div className="participants-array" id="array">
                

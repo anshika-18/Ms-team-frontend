@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import '../css/login.css'
 import axios from 'axios'
+import {Alert} from 'react-bootstrap'
 
 import Log from '../img/log.svg'
 import Profile from '../img/profile.svg'
@@ -8,6 +9,8 @@ export default function Login(props) {
 
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    const [msg,setMsg]=useState('')
+    const [show, setShow] = useState(false);
     //console.log(props)
     const onSubmit=async (e)=> {
         e.preventDefault();
@@ -25,15 +28,35 @@ export default function Login(props) {
                 sessionStorage.setItem('token',res.data.token)
             })
             .catch(err=>{
-                console.log(err)
+                console.log(err.response.data)
+                setMsg(err.response.data.msg)
+                setShow(true)
             })
     }
+
+
+    function AlertDismissibleExample() {
+      
+        if (show) {
+          return (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+              <p>
+                {msg}
+              </p>
+            </Alert>
+          );
+        }
+        return null;
+      }
+
+
     return (
         <div className="login">
              <div className="forms-container">
-             <img src={Log} className="login-image"></img>
+             <img src={Log} className="login-image" alt="login-image"></img>
                  <form  className="sign-in-form">
-                     <img className="login-profile" src={Profile}></img>
+                    <AlertDismissibleExample />
+                     <img className="login-profile" src={Profile} alt="profile-girl"></img>
                     <h2 className="title">Login
                     <button className="theme-change" onClick={props.setTheme}>{props.theme?<i className="fas fa-cloud-moon"></i>:<i className="fas fa-cloud-sun"></i>}</button>
                         </h2>

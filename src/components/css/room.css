@@ -148,4 +148,32 @@
 }
     
     
-    
+.alert-outer
+{
+    position: fixed;
+    margin-left: 50px;
+    bottom: 100px;
+    width:300px;
+    flex-wrap: wrap;
+}
+
+
+.alert-outer-raise
+{
+    position: fixed;
+    margin-left: 50px;
+    bottom: 100px;
+    width:300px;
+    color:black;
+    background-color:rgb(255, 221, 148);
+    padding:20px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 0 0 10px salmon;
+}
+
+.hide
+{
+    visibility: hidden;
+}

@@ -42,8 +42,6 @@ export default function BottomControls(props){
     },[time])
 
     const raiseHand=()=>{
-        
-
         props.socketInstance?.emit('raise-hand',props.name,roomId)
         props.setRaised(true)
     }
@@ -52,8 +50,10 @@ export default function BottomControls(props){
         props.socketInstance?.off('hand-raised').on('hand-raised',(name,room)=>{
            if(roomId===room)
            {
-            console.log(name+" shared hand")
             props.setNewRaise(name)
+            console.log(props.newRaise+" shared hand")
+            props.setRaiseName(name)
+            props.setAlertRaise(true)
            }
         })
 

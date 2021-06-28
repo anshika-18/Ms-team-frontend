@@ -7,6 +7,7 @@
     right: 0;
     animation-name:example ;
     animation-duration: 1s;
+    z-index: 5;
 
 }
 @keyframes example
@@ -302,5 +303,12 @@
     .chat,.dark-chat
     {
         width: 100vw;
+        height: 100vh;
+    }
+    .chatbox
+    {
+        overflow-y: scroll;
+        height: 75vh;
+        scroll-behavior: smooth;
     }
 }

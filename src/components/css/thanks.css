@@ -1,0 +1,30 @@
+.thanks-outer
+{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    text-align: center;
+    background-color:skyblue;
+    min-height: 100vh;
+}
+.thanks-head
+{
+    font-size: 50px;
+    font-weight: 700;
+    font-family: 'Pattaya', sans-serif;
+}
+.thanks-image
+{
+    width: 30vw;
+}
+.thanks-button
+{
+    margin-top: 30px;
+}
+
+@media  screen and (max-width:600px) {
+    .thanks-image
+    {
+        width: 70vw;
+    }
+}

@@ -13,7 +13,8 @@ export default function Chat(props) {
     }
 
     //send message
-    const send=useCallback(()=>{
+    const send=useCallback((e)=>{
+        e.preventDefault()
         props.socketInstance?.emit('send-message',data,roomId,props.name)
         const outer=document.getElementById('chatbox')
             const newmess=document.createElement('div')
@@ -35,7 +36,12 @@ export default function Chat(props) {
             newmess.append(smallSpan)
             newmess.className="my-text";
             outer.append(newmess)
-        setData("");   
+            setData("");   
+
+            const shouldScroll = outer.scrollTop + outer.clientHeight === outer.scrollHeight;
+            if (!shouldScroll) {
+                outer.scrollTop = outer.scrollHeight;
+            }
     })
 
     //recieve message
@@ -67,6 +73,19 @@ export default function Chat(props) {
 
                 newmess.className="new-text";
                 outer.append(newmess)
+
+                if(!props.chat)
+                {
+                    props.setAlertName(name)
+                    props.setAlertMessage(message)
+                    props.setAlert(true)
+                }
+                
+                const shouldScroll = outer.scrollTop + outer.clientHeight === outer.scrollHeight;
+            if (!shouldScroll) {
+                outer.scrollTop = outer.scrollHeight;
+            }
+
             }
         })
     })
@@ -79,9 +98,11 @@ export default function Chat(props) {
 
            </div>
            <div className="bottom-box">
-                <input  type="text" className="form-input" value={data} name="inputdata" onChange={(e)=>{setData(e.target.value)}} placeholder="Type message here...."></input>
-                <button className={props.theme?"dark-form-button":"form-button"} onClick={()=>{send()}}><i className="fas fa-arrow-circle-right"></i></button>
-                
+               <form>
+                <input  type="text" className="form-input" value={data} name="inputdata" onChange={(e)=>{setData(e.target.value)}} placeholder="Type message here...." autoFocus></input>
+                <i className={props.theme?" fas fa-arrow-circle-right dark-form-button":"fas fa-arrow-circle-right form-button"}></i>
+                <input type="submit" className={props.theme?"dark-form-button":"form-button"} style={{zIndex:'100',position:'absolute',right:'10px',bottom:'22px'}} value="" onClick={(e)=>{send(e)}}></input>
+                </form>
            </div>
         </div>
     )

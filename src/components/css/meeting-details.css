@@ -9,7 +9,8 @@
     font-size: 25px;
     margin-left: 20px;
 }
-.meeting-details button
+
+.meeting-button
 {
     border: 0;
     font-size: 18px;
@@ -19,11 +20,12 @@
     height: 100%;
     color: white;
 }
+
 .meeting-hide
 {
     display: none;
 }
-.meeting-details button:hover
+.meeting-button:hover
 {
     background: rgb(30,30,30);
     cursor: pointer;
@@ -32,7 +34,7 @@
 .meeting-expand
 {
     position: fixed;
-    bottom: 76px;
+    bottom: 85px;
     background-color:royalblue ;
     padding: 25px;
     margin-left: -100px;
@@ -52,6 +54,33 @@
     font-weight: 700;
 }
 
+.copy-text-input
+{
+    border: none;
+    width: 100%;
+    padding:10px;
+    margin-top: 10px;
+}
+.copy-text-input:focus
+{
+    outline: none;
+}
+.copy-text-button
+{
+    background-color:black ;
+    border: 0;
+    font-size: 18px;
+    padding: 15px;
+    width: 200px;
+    height: 100%;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: white;
+}
+.copy-text-button:hover
+{
+    background-color:rgb(36, 35, 35) ;
+}
 @media  screen and ( max-width:600px) {
     .meeting-details
     {

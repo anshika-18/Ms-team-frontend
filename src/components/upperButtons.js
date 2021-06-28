@@ -22,9 +22,13 @@ export default function UpperButtons(props) {
                     </button>
                 </OverlayTrigger>
             
-                <Chat name={props.name} className="chat"theme={props.theme} chat={props.chat} 
+                <Chat name={props.name} className="chat" theme={props.theme} chat={props.chat} 
                     socketInstance={props.socketInstance} 
-                    exitChat={()=>props.setChat(!props.chat)}/>
+                    exitChat={()=>props.setChat(!props.chat)}
+                    setAlert={props.setAlert}
+                    setAlertMessage={props.setAlertMessage}
+                    setAlertName={props.setAlertName}
+                    />
 
                 <OverlayTrigger
                 placement="left"
@@ -55,13 +59,10 @@ export default function UpperButtons(props) {
                          <i className="fas fa-share-alt"></i>
                     </button>
                 </OverlayTrigger>
-                {
-                    show
-                    ?<Participants setNewRaise={props.setNewRaise}
+
+               <Participants show={show} setNewRaise={props.setNewRaise} 
                     setLowerHand={props.setLowerHand} newRaise={props.newRaise} lowerHand={props.lowerHand}></Participants>
-                    :
-                    null
-                }
+                
                 <OverlayTrigger
                 placement="left"
                 overlay={<Popover id="popover-basic"><Popover.Title as="h3">Participants</Popover.Title></Popover>}>

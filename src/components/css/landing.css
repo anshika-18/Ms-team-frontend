@@ -52,7 +52,6 @@
 {
     cursor: pointer;
     box-shadow: 0 0 15px black;
-    width: 170px;
 }
 .columns-landing-1
 {
@@ -635,8 +634,27 @@
     font-family: 'Crimson Text', serif;
 }
 
+.join
+{
+    font-size: 20px;
+    border:0;
+    border:2px solid rgb(8, 8, 8);
+    padding:8px;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 200px;
+}
+.join:focus
+{
+    outline: none;
+    box-shadow: 0 0 10px rgb(90, 90, 236);
+    border:0;
+}
 
-
+.join::placeholder
+{
+    font-family: monospace;
+}
 
 
 
@@ -668,13 +686,14 @@
     }
     .columns-landing-2,.landing-2
     {
-        height: 60vh;
+        height: 350px;
         margin-right: 10px;
     }
     .image1-out,.dark-image1-out
     {
         margin: 10px;
         padding:10px;
+        height:320px;
     }   
     .image1-head,.dark-image1-head
     {
@@ -734,5 +753,17 @@
     .connect-landing-outer img,.dark-connect-landing-outer img
     {
         width: 90vw;
+    }
+    .join
+    {
+        margin-top: 20px;
+    }
+    .contact-up img
+    {
+        width: 80vw;
+    }
+    .contact-text-main,.dark-contact-text-main
+    {
+        font-size: 15px;
     }
 }

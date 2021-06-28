@@ -42,3 +42,15 @@
     text-align: center;
 
 }
+
+.hide-participants
+{
+    display: none;
+}
+
+@media screen and (max-width:600px) {
+    .participant-outer
+    {
+        width: 70vw;
+    }
+}

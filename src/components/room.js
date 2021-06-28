@@ -1,19 +1,16 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios'
-
 import { getUserMediaPromise } from './media';
 import { fetchRoomAPI, joinRoomAPI } from './api';
 import {useParams,useHistory} from 'react-router-dom'
-
 import RemoteUserVideo from './remotevideo';
 import BottomControls from './buttonControls';
 import './css/room.css'
-
+import {Alert} from 'react-bootstrap'
 import Login from './auth/login'
 import Register from './auth/register';
 import UpperButtons from './upperButtons';
-
 
 function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
@@ -22,25 +19,24 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
   const socketInstance = useRef(null);
   const [chat,setChat]=useState(false)
   const [raised,setRaised]=useState(false)
-
   const [newRaise,setNewRaise]=useState('');
   const [lowerHand,setLowerHand]=useState('');
-
   const screen=useRef(null)
   const [shared,isShared]=useState(false)
   const [mesharing,setMesharing]=useState(false);
   let temp=false;
-
   const [muted, setMuted] = useState(false);
   const [videoMuted, setVideoMuted] = useState(false);
   const [participants, setParticipants] = useState([]);
-
   const [name,setName]=useState('')
   const [login,setLogin]=useState(false)
-
   const history=useHistory()
   const { roomId } = useParams();
-
+  const [alertName,setAlertName]=useState('')
+  const [alertMessage,setAlertMessage]=useState('')
+  const [showAlert,setAlert]=useState(false)
+  const [alertRaise,setAlertRaise]=useState(false)
+  const [raiseName,setRaiseName]=useState('')
   const [token,setToken]=useState(sessionStorage.getItem('token'))
   
   //initialization of setting vido
@@ -92,9 +88,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
       console.log(incomingCall.peer)
       
       incomingCall.on('stream', function(remoteStream) {
-        console.log('-------------------------------------------------')
-        console.log('lets check what the stream is ',remoteStream.getTracks()[0])
-
+        //user video
         if(remoteStream.getTracks()[0].kind==='audio')
         {
           const data={
@@ -113,6 +107,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
                 
               })
         }
+        //user's screen
         else
         {
           console.log('lets play video')
@@ -125,8 +120,8 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     }
 
     peerInstance.on('call', incomingCallListener);
-
     return () => peerInstance.off('call', incomingCallListener)
+
   }, [peerInstance, participants])
 
   //video toggle
@@ -134,13 +129,10 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     if (!currentMediaStream.current) {
       return;
     }
-
     const videoTracks = currentMediaStream.current.getVideoTracks();
-
     console.log("video - ",videoTracks)
     if (videoTracks[0]) {
       videoTracks[0].enabled = !videoMuted
-
     }
 
   }, [videoMuted])
@@ -150,9 +142,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     if (!currentMediaStream.current) {
       return;
     }
-
     const audioTracks = currentMediaStream.current.getAudioTracks();
-
     if (audioTracks[0]) {
       audioTracks[0].enabled = !muted
     }
@@ -161,16 +151,11 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
   //set my video--- called in initialization useEffect
   const setCurrentUserVideo = useCallback(async () => {
-    if (!currentUserVideoRef.current) {
-      return;
-    }
-
-    if (!currentUserId) {
+    if (!currentUserVideoRef.current||!currentUserId) {
       return;
     }
 
     try {
-      //console.log('set current user name -- ',name)
       const mediaStream = await getUserMediaPromise({ video: true, audio: true });
       currentUserVideoRef.current.srcObject = mediaStream;
       currentUserVideoRef.current.play();
@@ -180,11 +165,14 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
         id:currentUserId,
         name:name
       }
+
       await joinRoomAPI(roomId,participant)
       await callEveryoneInTheRoom(roomId)
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
+
   }, [roomId, currentUserId,token])
 
   // Call function to call the person with given userId
@@ -208,7 +196,6 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
         resolve(newParticipant);
         console.log(participants)
       }
-
       outgoingCall.on('stream', streamListener);
     })
 }, [participants]);
@@ -220,7 +207,6 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
       const roomInformation = await fetchRoomAPI(roomId)
       const { participants } = roomInformation;
-
       console.log(participants)
       if (participants.length) {
         const participantCalls=[] = participants
@@ -234,7 +220,8 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
           })
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
   }, [currentUserId, call])
@@ -242,21 +229,18 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
 //share my screen with person userid
 const share=useCallback((stream,userId)=>{
 
-  console.log('calling --- ',userId)
   if(!peerInstance||!screen.current)
   {
     return;
   }
-  //console.log(stream.constructor.name)
-  //console.log(stream)
   peerInstance.call(userId,stream)
 
 })
 
 //stop screen sharing
 function stopSharing(){
-  isShared(false)
-  setMesharing(false)
+  isShared(false);
+  setMesharing(false);
   socketInstance.current.emit('stopping-screen-share',roomId)
 }
 
@@ -279,15 +263,36 @@ function screenShare(){
           temp=true
           isShared(true);
           screen.current.srcObject=stream
-          screen.current.play();
-
-          //console.log('0 are -- -',participants)
-          
+          screen.current.play();          
           participants.map((participant)=>share(stream,participant.userId))
 
       })
   }
 
+ useEffect(() => {
+    var d=document.getElementById('alert-outer')
+    if(d)
+    {
+        setTimeout(()=>{
+          setAlert(false);
+        },10000);
+    }
+
+ }, [alertName,alertMessage])
+
+ useEffect(() => {
+  if(alertRaise)
+  {
+    var d=document.getElementById('alert-outer-raise')
+    if(d)
+    {
+        setTimeout(()=>{
+          setAlertRaise(false)
+        },5000);
+    }
+  }
+
+}, [alertRaise])
 
 return (
   <div>
@@ -330,7 +335,7 @@ return (
               videoTracks[0].stop()
               //console.log(roomId)
               socketInstance?.current?.disconnect(roomId)
-              history.push(`/`)
+              history.push(`/thanks`)
           }}
           toggleMute={() => setMuted(!muted)}
           toggleVideoMute={() => setVideoMuted(!videoMuted)}
@@ -343,9 +348,12 @@ return (
           socketInstance={socketInstance.current}
           name={name}
           raised={raised}
+          newRaise={newRaise}
           setRaised={(value)=>setRaised(value)}
           setNewRaise={(value)=>setNewRaise(value)}
           setLowerHand={(value)=>setLowerHand(value)}
+          setAlertRaise={(value)=>setAlertRaise(value)}
+          setRaiseName={(value)=>setRaiseName(value)}
           />
         <div>
             <UpperButtons
@@ -353,9 +361,28 @@ return (
               setLowerHand={(value)=>setLowerHand(value)}
                newRaise={newRaise} lowerHand={lowerHand} name={name} 
                theme={theme} socketInstance={socketInstance.current} 
-               chat={chat} setChat={setChat} />
+               chat={chat} setChat={setChat} 
+               setAlert={(value)=>setAlert(value)}
+               setAlertMessage={(value)=>setAlertMessage(value)}
+               setAlertName={(value)=>setAlertName(value)}
+               
+            />
         </div>
-     </div>
+
+        <div id="alert-outer" className={showAlert?"alert-outer":"hide"}>
+          <Alert variant="danger">
+            <Alert.Heading> <i class="far fa-comment-dots"></i> New Message </Alert.Heading>
+            <hr/>
+            <p>{alertName}</p>
+          
+          </Alert>
+        </div>
+
+        <div id="alert-outer-raise" className={alertRaise?"alert-outer-raise":"hide"}>
+          <div><i class="fas fa-user"></i> {raiseName} raised hand</div>
+        </div>
+        
+        </div>
     
    </div>
    :

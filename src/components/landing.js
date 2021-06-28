@@ -1,4 +1,4 @@
-import React,{useCallback,useState} from 'react'
+import React,{useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
 import './css/landing.css'
 import question2 from './img/question2.svg'
@@ -23,8 +23,18 @@ export default function Landing({currentUserId,setTheme,theme}) {
 
     },[currentUserId])
 
-
-
+    const join=()=>{
+      const x=document.getElementById('join')
+      console.log(x.value)
+      if(x.value)
+      {
+        history.push(`/rooms/${x.value}`)
+      }
+      else
+      {
+        alert('Enter Meeting Id')
+      }
+    }
 
     return (
         <div>
@@ -37,7 +47,11 @@ export default function Landing({currentUserId,setTheme,theme}) {
                   <div className="shift">
                   <div className={theme?"dark-text-head":"text-head"}><img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/1200px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png"></img>Microsoft<span className={theme?"dark-change-color":"change-color"}> Teams</span></div>
                   <div className={theme?"dark-text-head":"text-head"}>Create <span className={theme?"dark-change-color":"change-color"}>Video Room</span></div>
-                   <button onClick={createRoom} className={theme?"dark-join-button":"join-button"}>Join Meeting</button>
+                   <button onClick={createRoom} className={theme?"dark-join-button":"join-button"}>Create Meeting</button>
+                   <div>
+                   <input className="join" type="text" id="join" placeholder="Enter Meeting Id"></input>
+                   <button onClick={join} className={theme?"dark-join-button":"join-button"}>Join Meeting</button>
+                   </div>
                    <div className={theme?"dark-style":"style"}>
                      <div>Chat with your friends</div>
                      <div>Enjoy unlimited Video Calling</div>

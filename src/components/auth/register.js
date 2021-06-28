@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import '../css/register.css'
 import axios from 'axios'
+import {Alert} from 'react-bootstrap'
 
 import Reg from '../img/register2.svg'
 import Profile from '../img/profile.svg'
@@ -8,6 +9,8 @@ export default function Register(props) {
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    const [msg,setMsg]=useState('')
+    const [show, setShow] = useState(false);
 
     console.log(props)
     const onSubmit=(e)=> {
@@ -27,16 +30,36 @@ export default function Register(props) {
                 sessionStorage.setItem('token',res.data.token)
             })
             .catch(err=>{
-                console.log(err)
+                console.log(err.response.data)
+                setMsg(err.response.data.msg)
+                setShow(true)
             })
         
     }
+
+    function AlertDismissibleExample() {
+      
+        if (show) {
+          return (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+              <p>
+                {msg}
+              </p>
+            </Alert>
+          );
+        }
+        return null;
+      }
+
+
     return (
         <div className="register">
              <div className="forms-container">
-             <img src={Reg} className="register-image"></img>
+             
+             <img src={Reg} className="register-image" alt="register"></img>
                  <form  className="sign-in-form">
-                 <img className="login-profile" src={Profile}></img>
+                 <AlertDismissibleExample />
+                 <img className="login-profile" src={Profile} alt="profile-girl"></img>
                     <h2 className="title">Register</h2>
                         <div className="input-register">
                             <i class="fas fa-user"></i>
