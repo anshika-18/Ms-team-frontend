@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const createRoomAPI=async(author)=>{
-    const response=await axios.post(`https://ms-team-anshika-backend.herokuapp.com/rooms`,{
+    const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms`,{
         method:'POST',
         headers:{
             'Accept':'application/json',
@@ -9,7 +9,7 @@ export const createRoomAPI=async(author)=>{
         },
         body:JSON.stringify({author})
     })
-    
+
     const data=await response.json()
     return data;
 }
