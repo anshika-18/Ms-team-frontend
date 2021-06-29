@@ -14,8 +14,9 @@
 @media screen and ( max-width:600px) {
     .connect
     {
-        width: 70vw;
+        width: 80vw;
         height: 65vh;
+        right:0;
     }
 }
 

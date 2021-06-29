@@ -18,7 +18,7 @@ export default function MeetingDetails() {
 
     return (
         <div className="meeting-details">
-            <button className="meeting-button" onClick={()=>setOpen(!open)}>Meeting Details<i class="fas fa-info-circle"></i></button>
+            <button className="meeting-button" onClick={()=>setOpen(!open)}><span>Meeting Details</span><i class="fas fa-info-circle"></i></button>
             <div className={open?"meeting-expand":"meeting-hide"}>
                 <div className="meeting-head">Meeting Details-</div>
                 <div className="meeting-id"><span>Meeting Id- </span>{roomId}</div>

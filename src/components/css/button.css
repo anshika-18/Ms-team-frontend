@@ -3,6 +3,7 @@
     background-color: black;
     display: grid;
     grid-template-columns: 30% 55% 15%;
+    width: 100%;
 }
 
 
@@ -170,14 +171,17 @@
 
 
 @media screen and ( max-width:600px) {
+    
     .share,.dark-share
     {
         display: none;
     }
     .outer-button,.dark-outer-button
     {
-        display: grid;
-        grid-template-columns: auto;
+        display: flex;
+        bottom: 0;
+        padding-left: 0px;
+        width: 100%;
     }
     .time
     {
@@ -185,10 +189,17 @@
     }
     .centered
     {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
+        margin-right: 0;
+        display: flex;
     }
-    
+    .centered button
+    {
+        margin-right: 10px;
+    }
+    .raise-hand
+    {
+        margin-left: 1px;
+    }
   
 }
 

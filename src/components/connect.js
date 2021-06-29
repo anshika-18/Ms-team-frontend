@@ -17,6 +17,10 @@ export default function Connect({toggleConnect}) {
             url:window.location.href
         }
         const response=sendMail(send)
+        if(sendMail)
+        {
+            alert('sent successfully')
+        }
         toggleConnect();
     }
 

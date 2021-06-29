@@ -82,8 +82,21 @@
     background-color:rgb(36, 35, 35) ;
 }
 @media  screen and ( max-width:600px) {
-    .meeting-details
+    .meeting-button
+    {
+        margin-left: 1px;
+        width: 50px;
+    }
+    .meeting-details button i
+    {
+        margin-left: 1px;
+    }
+    .meeting-button span
     {
         display: none;
+    }
+    .meeting-expand
+    {
+        margin-left: -300px
     }
 }
