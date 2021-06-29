@@ -37,7 +37,7 @@ return data;
 }
 
 export const sendMail=async(send)=>{
-    const response=await fetch('https://ms-team-anshika-backend.herokuapp.com/api/send',{
+    const response=await fetch('http://localhost:5000/api/send',{
         method:'POST',
         headers:{
             'Accept':'application/json',

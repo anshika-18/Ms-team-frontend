@@ -129,7 +129,7 @@
 .chatbox
 {
     overflow-y: scroll;
-    height: 80vh;
+    height: 75vh;
     scroll-behavior: smooth;
 }
 
@@ -299,6 +299,55 @@
     font-weight: 700;
 }
 
+@media screen and (max-width: 1380px) {
+    .chat,.dark-chat
+    {
+        width: 30vw;
+        height: 100vh;
+    }
+    .exit-chat
+    {
+        margin-left: 120px;
+    }
+    .chatbox
+    {
+        overflow-y: scroll;
+        height: 80vh;
+        scroll-behavior: smooth;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .chat,.dark-chat
+    {
+        width: 35vw;
+        height: 100vh;
+    }
+    .exit-chat
+    {
+        margin-left: 100px;
+    }
+    .chatbox
+    {
+        height: 80vh;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .chat,.dark-chat
+    {
+        width: 50vw;
+        height: 100vh;
+    }
+    .exit-chat
+    {
+        margin-left: 100px;
+    }
+    
+}
+
+
 @media screen and (max-width:600px) {
     .chat,.dark-chat
     {
@@ -312,3 +361,4 @@
         scroll-behavior: smooth;
     }
 }
+

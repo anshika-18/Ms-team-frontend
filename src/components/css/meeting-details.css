@@ -81,6 +81,67 @@
 {
     background-color:rgb(36, 35, 35) ;
 }
+
+@media  screen and ( max-width:1200px) {
+    .meeting-button
+    {
+        margin-left: 1px;
+        width: 50px;
+    }
+    .meeting-details button i
+    {
+        margin-left: 1px;
+    }
+    .meeting-button span
+    {
+        display: none;
+    }
+    .meeting-expand
+    {
+        margin-left: -300px;
+        bottom:90px
+    }
+}
+
+@media  screen and ( max-width:1400px) {
+    .meeting-button
+    {
+        margin-left: 1px;
+    }
+    .meeting-details button i
+    {
+        margin-left: 1px;
+    }
+   
+    .meeting-expand
+    {
+        margin-left: -300px;
+        bottom:100px
+    }
+}
+
+@media  screen and ( max-width:1000px) {
+    .meeting-button
+    {
+        margin-left: 1px;
+        width: 50px;
+    }
+    .meeting-details button i
+    {
+        margin-left: 1px;
+    }
+    .meeting-button span
+    {
+        display: none;
+    }
+    .meeting-expand
+    {
+        margin-left: -300px;
+        bottom:130px
+    }
+}
+
+
 @media  screen and ( max-width:600px) {
     .meeting-button
     {

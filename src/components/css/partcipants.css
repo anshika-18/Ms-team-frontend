@@ -48,6 +48,23 @@
     display: none;
 }
 
+@media screen and (max-width:1400px) {
+    .participant-outer
+    {
+        width: 40vw;
+        right:60px;
+        height: 70vh;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .participant-outer
+    {
+        width: 55vw;
+        right:60px;
+    }
+}
+
 @media screen and (max-width:600px) {
     .participant-outer
     {
