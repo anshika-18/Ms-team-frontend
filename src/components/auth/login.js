@@ -1,10 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useRef,useEffect} from 'react'
 import '../css/login.css'
 import axios from 'axios'
 import {Alert} from 'react-bootstrap'
 
 import Log from '../img/log.svg'
 import Profile from '../img/profile.svg'
+
 export default function Login(props) {
 
     const [email,setEmail]=useState('')
@@ -19,6 +20,8 @@ export default function Login(props) {
             email:email,
             password:password
         }
+
+        
         await axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/login',(data))
             .then((res)=>{
                 console.log(res)
@@ -28,13 +31,13 @@ export default function Login(props) {
                 sessionStorage.setItem('token',res.data.token)
             })
             .catch(err=>{
-                console.log(err.response.data)
+                console.log(err)
                 setMsg(err.response.data.msg)
                 setShow(true)
             })
     }
 
-
+   
     function AlertDismissibleExample() {
       
         if (show) {
@@ -49,14 +52,14 @@ export default function Login(props) {
         return null;
     }
 
-
+//<img className="login-profile" src={Profile} alt="profile-girl"></img>
     return (
         <div className="login">
              <div className="forms-container">
              <img src={Log} className="login-image" alt="login-image"></img>
                  <form  className="sign-in-form">
                     <AlertDismissibleExample />
-                     <img className="login-profile" src={Profile} alt="profile-girl"></img>
+                    <img className="login-profile" src={Profile} alt="profile-girl"></img>
                     <h2 className="title">Login
                     <button className="theme-change" onClick={props.setTheme}>{props.theme?<i className="fas fa-cloud-moon"></i>:<i className="fas fa-cloud-sun"></i>}</button>
                         </h2>

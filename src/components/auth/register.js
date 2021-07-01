@@ -2,11 +2,13 @@ import React,{useState} from 'react'
 import '../css/register.css'
 import axios from 'axios'
 import {Alert} from 'react-bootstrap'
-
 import Reg from '../img/register2.svg'
 import Profile from '../img/profile.svg'
-export default function Register(props) {
-    const [name,setName]=useState('')
+
+
+export default function Register(props) 
+{
+    const [username,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [msg,setMsg]=useState('')
@@ -17,10 +19,11 @@ export default function Register(props) {
         e.preventDefault();
         
         const data={
-        name,
-        email,
-        password
+          name:username,
+          email,
+          password
         }
+
         axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/register',data)
             .then((res)=>{
                 console.log(res)
@@ -30,7 +33,7 @@ export default function Register(props) {
                 sessionStorage.setItem('token',res.data.token)
             })
             .catch(err=>{
-                console.log(err.response.data)
+                console.log(err)
                 setMsg(err.response.data.msg)
                 setShow(true)
             })
@@ -63,7 +66,7 @@ export default function Register(props) {
                     <h2 className="title">Register</h2>
                         <div className="input-register">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" value={name} onChange={(e)=>setName(e.target.value)}/>
+                            <input type="text" placeholder="Username" value={username} onChange={(e)=>setName(e.target.value)}/>
                         </div>
                         <div className="input-register">
                             <i class="fas fa-user"></i>

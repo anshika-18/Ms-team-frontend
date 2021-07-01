@@ -51,7 +51,7 @@
 @media screen and (max-width:1400px) {
     .participant-outer
     {
-        width: 40vw;
+        width: 25vw;
         right:60px;
         height: 70vh;
     }

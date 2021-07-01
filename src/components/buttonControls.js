@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import {Tooltip,OverlayTrigger,Popover} from 'react-bootstrap'
 import MeetingDetails from './meeting-details'
 import './css/button.css'
@@ -16,6 +16,8 @@ export default function BottomControls(props){
     const [duration,setDuration]=useState('')
     const [time,setTime]=useState(0)
     const {roomId}=useParams()
+
+   
 
     useEffect(() => {
         const set=setInterval(()=>{
@@ -71,6 +73,7 @@ export default function BottomControls(props){
         props.socketInstance?.emit('lower-hand',props.name,roomId)
         props.setRaised(false)
     }
+    
 
     return(
     <div className={props.theme?"dark-outer-button":"outer-button"}  style={style}>
@@ -114,6 +117,8 @@ export default function BottomControls(props){
             overlay={<Popover id="popover-basic"><Popover.Title as="h3">Share screen</Popover.Title></Popover>}>
             <button className={props.theme?"dark-share":"share"} onClick={props.screenShare}>Share Screen</button></OverlayTrigger>
         }
+        
+        
         <OverlayTrigger
             placement="top"
             overlay={<Popover id="popover-basic"><Popover.Title as="h3">Leave Call</Popover.Title></Popover>}>

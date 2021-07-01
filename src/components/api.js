@@ -10,34 +10,34 @@ export const createRoomAPI=async(author)=>{
         body:JSON.stringify({author})
     })
 
-    const data=await response.json()
-    return data;
+    const res=await response.json()
+    return res;
 }
 
 export const fetchRoomAPI=async(roomId)=>{
-const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms/${roomId}`,{
-    method:'GET'
-})
-const data=await response.json()
-return data;
+    const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms/${roomId}`,{
+        method:'GET'
+    })
+    const res=await response.json()
+    return res;
 }
 
 export const joinRoomAPI=async(roomId,participant)=>{
     const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms/${roomId}/join`,{
-    method:'POST',
-    headers:{
-        'Accept':'application/json',
-        'Content-type':'application/json'
-    },
-    body:JSON.stringify({participant})
-})
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json'
+        },
+        body:JSON.stringify({participant})
+    })
 
-const data=response.json()
-return data;
+    const res=response.json()
+    return res;
 }
 
 export const sendMail=async(send)=>{
-    const response=await fetch('http://localhost:5000/api/send',{
+    const response=await fetch('https://ms-team-anshika-backend.herokuapp.com/api/send',{
         method:'POST',
         headers:{
             'Accept':'application/json',
@@ -45,7 +45,6 @@ export const sendMail=async(send)=>{
         },
         body:JSON.stringify(send)
     });
-
-    const data=response.json()
-    return data;
+    const res=response.json()
+    return res;
 }

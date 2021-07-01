@@ -128,6 +128,13 @@
   {
       height: 150px;
   }
+
+  .preview-video
+  {
+    width: 332px;
+    height: 250px;
+  }
+
   @media (max-width: 570px) {
     
     .login-image {

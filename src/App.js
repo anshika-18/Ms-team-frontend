@@ -6,10 +6,9 @@ import {v4 as uuid} from 'uuid'
 
 import Landing from './components/landing'
 import Room from './components/room'
-import Login from './components/auth/login'
 import Thanks from './components/thanks'
-
 import './App.css'
+
 function App() {
 
   const peerInstance=useRef(null)
@@ -49,7 +48,6 @@ function App() {
           />
         }>
         </Route>
-        <Route exact path="/login" component={(props)=><Login></Login>}></Route>
         <Route exact path="/thanks" component={Thanks}></Route>
       </Switch>
     </BrowserRouter>

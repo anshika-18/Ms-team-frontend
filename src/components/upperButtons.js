@@ -47,7 +47,7 @@ export default function UpperButtons(props) {
                 {
                     connect
                     ?
-                    <Connect toggleConnect={()=>setConnect(!connect)} connect={connect}/>
+                    <Connect toggleConnect={(value)=>setConnect(value)}  connect={connect}/>
                     :
                     null
                 }
@@ -55,7 +55,7 @@ export default function UpperButtons(props) {
                 <OverlayTrigger
                 placement="left"
                 overlay={<Popover id="popover-basic"><Popover.Title as="h3">Invite</Popover.Title></Popover>}>
-                    <button className="connect-out-button" onClick={()=>setConnect(!connect)}>
+                    <button className="connect-out-button" onClick={()=>{setConnect(!connect); setShow(false)}}>
                          <i className="fas fa-share-alt"></i>
                     </button>
                 </OverlayTrigger>
@@ -66,7 +66,7 @@ export default function UpperButtons(props) {
                 <OverlayTrigger
                 placement="left"
                 overlay={<Popover id="popover-basic"><Popover.Title as="h3">Participants</Popover.Title></Popover>}>
-                    <button className="participants-button" onClick={()=>setShow(!show)}>
+                    <button className="participants-button" onClick={()=>{setShow(!show); setConnect(false)}}>
                         <i class="fas fa-users"></i>
                     </button>
                 </OverlayTrigger>

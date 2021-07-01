@@ -12,10 +12,10 @@
 
 .video
 {
-    height: 300px;
-    width: 400px;
+    margin-top:10px;
+    height: 250px;
+    width: 332px;
     box-shadow: 0 0 20px rgb(0, 0, 0);
-    border-radius: 30px;
 }
 
 .video-name
@@ -39,8 +39,8 @@
     justify-content: space-around;
     flex-wrap: wrap;
     width: 95vw;
-    padding-top:20px;
-    padding-left:20px;
+    padding-left:10px;
+    padding-bottom: 10px;
     margin-bottom: 140px;
 }
 .columns-open
@@ -48,7 +48,8 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 65vw;
+    margin-right: 20vw;
     padding-top:20px;
     padding-left:20px;
     margin-bottom: 140px;
@@ -79,10 +80,10 @@
 
 .dark-video
 {
-    height: 300px;
-    width: 400px;
+    margin-top:10px;
+    height: 250px;
+    width: 332px;
     box-shadow: 0 0 20px rgb(0, 0, 0);
-    border-radius: 30px;
 }
 
 .dark-screen
@@ -96,9 +97,9 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 90vw;
-    padding-top:20px;
-    padding-left:20px;
+    width: 95vw;
+    padding-left:10px;
+    padding-bottom: 10px;
     margin-bottom: 140px;
 }
 .dark-columns-open
@@ -106,7 +107,8 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 65vw;
+    margin-right: 20vw;
     padding-top:20px;
     padding-left:20px;
     margin-bottom: 140px;
@@ -115,7 +117,6 @@
 {
     margin-top: 10px;
 }
-
 
 
 .alert-outer-raise
@@ -140,6 +141,28 @@
 
 
 
+.single div .video,.single div .dark-video
+{
+    height: 530px;
+    width: 705px;
+}
+.double div .video,.double div .dark-video
+{
+    height:400px;
+    width: 533px;
+}
+.double-open div .video,.double-open div .dark-video
+{
+    height:295px;
+    width: 390px;
+}
+.triple div .video,.triple div .dark-video
+{
+    height:290px;
+    width: 390px;
+}
+
+
 @media screen and ( max-width:600px){
     .Room
     {
@@ -157,7 +180,9 @@
     {
         display: none;
     }
-    .video,.dark-video
+    .video,.dark-video,.single div .video,.single div .dark-video,
+    .double div .video,.double div .dark-video,.double-open div .video,
+    .double-open div .dark-video,.triple div .video,.triple div .dark-video
     {
         height: 190px;
         width: 255px;

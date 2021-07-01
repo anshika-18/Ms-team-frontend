@@ -12,117 +12,138 @@ import Login from './auth/login'
 import Register from './auth/register';
 import UpperButtons from './upperButtons';
 
-function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
-  const currentMediaStream = useRef(null);
-  const currentUserVideoRef = useRef(null);
-  const socketInstance = useRef(null);
-  const [chat,setChat]=useState(false)
-  const [raised,setRaised]=useState(false)
-  const [newRaise,setNewRaise]=useState('');
-  const [lowerHand,setLowerHand]=useState('');
-  const screen=useRef(null)
-  const [shared,isShared]=useState(false)
-  const [mesharing,setMesharing]=useState(false);
-  let temp=false;
-  const [muted, setMuted] = useState(false);
-  const [videoMuted, setVideoMuted] = useState(false);
-  const [participants, setParticipants] = useState([]);
-  const [name,setName]=useState('')
-  const [login,setLogin]=useState(false)
-  const history=useHistory()
-  const { roomId } = useParams();
-  const [alertName,setAlertName]=useState('')
-  const [alertMessage,setAlertMessage]=useState('')
-  const [showAlert,setAlert]=useState(false)
-  const [alertRaise,setAlertRaise]=useState(false)
-  const [raiseName,setRaiseName]=useState('')
-  const [token,setToken]=useState(sessionStorage.getItem('token'))
-  
-  //initialization of setting vido
-  useEffect(() => {
+function Room ({peerInstance,currentUserId,theme,setTheme}) 
+{
+
+    //state to store media
+    const currentMediaStream = useRef(null);
+    const currentUserVideoRef = useRef(null);
+
+    //socket instance
+    const socketInstance = useRef(null);
+
+    //state of chat box open or close
+    const [chat,setChat]=useState(false)
+
+    //state of raised hand box open or not
+    const [raised,setRaised]=useState(false)
+
+    //name of person who raised hand
+    const [newRaise,setNewRaise]=useState('');
+
+    //name of person who lowered hand
+    const [lowerHand,setLowerHand]=useState('');
+
+    //screen share 
+    const screen=useRef(null)
+    const [shared,isShared]=useState(false)
+    const [mesharing,setMesharing]=useState(false);
+    let temp=false;
+
+    //audio toggle
+    const [muted, setMuted] = useState(false);
+
+    //video toggle
+    const [videoMuted, setVideoMuted] = useState(false);
+
+    //all participants in room excluding me
+    const [participants, setParticipants] = useState([]);
     
-    if(token)
-    {
-      console.log('if token is valid -----',name)
-      setCurrentUserVideo();
-      const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
-      socketInstance.current=socket;
-
-      socketInstance.current.on('get:peerId', () => {
-       // console.log('lets send')
-      socketInstance?.current?.emit('send:peerId', currentUserId)
-    })
-    }
-  }, [token])
-
-  //someone left the meeting 
-  useEffect(() => {
-    const userLeft = (peerId) => {
-      const filteredParticipants = participants.filter(
-        participant => participant.userId !== peerId
-      )
-      setParticipants(filteredParticipants)
-    }
-
-    socketInstance?.current?.on('user:left', userLeft)
-    return () => {
-      socketInstance?.current?.off('user:left', userLeft)
-    }
+    //my name
+    const [name,setName]=useState('')
     
-  }, [participants])
+    //login or register state
+    const [login,setLogin]=useState(false)
+    const history=useHistory()
+    const { roomId } = useParams();
+    
+    //notification states
+    const [alertName,setAlertName]=useState('')
+    const [alertMessage,setAlertMessage]=useState('')
+    const [showAlert,setAlert]=useState(false)
+    const [alertRaise,setAlertRaise]=useState(false)
+    const [raiseName,setRaiseName]=useState('')
+    const [token,setToken]=useState(sessionStorage.getItem('token'))
 
-  //answer call 
-  useEffect(() => {
-    if (!peerInstance) {
-      return;
-    }
 
-    const incomingCallListener = async (incomingCall) => {
-      if (!currentMediaStream.current) {
-        return;
+    //initialization of setting vido
+    useEffect(() => {
+      if(token)
+      {
+          console.log('if token is valid -----',name)
+          setCurrentUserVideo();
+          const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
+          socketInstance.current=socket;
+
+          socketInstance.current.on('get:peerId', () => {
+           // console.log('lets send')
+          socketInstance?.current?.emit('send:peerId', currentUserId)
+          })
       }
+    }, [token])
 
-      incomingCall.answer(currentMediaStream.current)
+    //someone left the meeting 
+    useEffect(() => {
+      //remove user who left from participants state array
+        const userLeft = (peerId) => {
+        const filteredParticipants = participants.filter(
+            participant => participant.userId !== peerId
+        )
+        setParticipants(filteredParticipants)
+        }
 
-      console.log(incomingCall.peer)
-      
-      incomingCall.on('stream', function(remoteStream) {
-        //user video
-        if(remoteStream.getTracks()[0].kind==='audio')
-        {
-          const data={
-            roomId,
-            id:incomingCall.peer
-          }
-          axios.post('https://ms-team-anshika-backend.herokuapp.com/api/getname',data)
-              .then(res=>{
-                console.log('here is response from axios request',res);
-                const newParticipant= {
-                  userId: incomingCall.peer,
-                  mediaStream: remoteStream,
-                  name:res.data
-                }
-                setParticipants(participants.concat(newParticipant));
+        socketInstance?.current?.on('user:left', userLeft)
+        return () => {
+            socketInstance?.current?.off('user:left', userLeft)
+        }
+    }, [participants])
+
+    //answer call 
+    useEffect(() => {
+        if (!peerInstance) {
+          return;
+        }
+
+        const incomingCallListener = async (incomingCall) => {
+            if (!currentMediaStream.current) {
+                return;
+            }
+            incomingCall.answer(currentMediaStream.current)
+            console.log(incomingCall.peer)
+            incomingCall.on('stream', function(remoteStream) {
+                //user video
+                if(remoteStream.getTracks()[0].kind==='audio')
+                {
+                    const data={
+                        roomId,
+                        id:incomingCall.peer
+                    }
+                    axios.post('https://ms-team-anshika-backend.herokuapp.com/api/getname',data)
+                        .then(res=>{
+                            console.log('here is response from axios request',res);
+                            const newParticipant= {
+                                userId: incomingCall.peer,
+                                mediaStream: remoteStream,
+                                name:res.data
+                            }
+                            setParticipants(participants.concat(newParticipant));
                 
-              })
-        }
-        //user's screen
-        else
-        {
-          console.log('lets play video')
-          isShared(true);
-          screen.current.srcObject=remoteStream;
-          screen.current.play();
-        }
-        
-      })
-    }
-
-    peerInstance.on('call', incomingCallListener);
-    return () => peerInstance.off('call', incomingCallListener)
-
-  }, [peerInstance, participants])
+                        })
+                }
+                //user's screen
+                else
+                {
+                    console.log('lets play video')
+                    isShared(true);
+                    screen.current.srcObject=remoteStream;
+                    screen.current.play();
+                }
+             })
+            }
+        peerInstance.on('call', incomingCallListener);
+        return () => peerInstance.off('call', incomingCallListener)
+    }, [peerInstance, participants])
 
   //video toggle
   useEffect(() => {
@@ -132,7 +153,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     const videoTracks = currentMediaStream.current.getVideoTracks();
     console.log("video - ",videoTracks)
     if (videoTracks[0]) {
-      videoTracks[0].enabled = !videoMuted
+        videoTracks[0].enabled = !videoMuted
     }
 
   }, [videoMuted])
@@ -144,7 +165,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     }
     const audioTracks = currentMediaStream.current.getAudioTracks();
     if (audioTracks[0]) {
-      audioTracks[0].enabled = !muted
+        audioTracks[0].enabled = !muted
     }
 
   }, [muted])
@@ -162,8 +183,8 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
 
       currentMediaStream.current = mediaStream;
       const participant={
-        id:currentUserId,
-        name:name
+          id:currentUserId,
+          name:name
       }
 
       await joinRoomAPI(roomId,participant)
@@ -200,7 +221,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     })
 }, [participants]);
 
-//call everyone one by one
+  //call everyone one by one
   const callEveryoneInTheRoom = useCallback(async (roomId) => {
     try 
     {
@@ -209,15 +230,14 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
       const { participants } = roomInformation;
       console.log(participants)
       if (participants.length) {
-        const participantCalls=[] = participants
-          .filter((participant) => participant.id !== currentUserId)
-          .map((participant) => call(participant))
+          const participantCalls=[] = participants
+            .filter((participant) => participant.id !== currentUserId)
+            .map((participant) => call(participant))
 
         Promise.all(participantCalls)
           .then((values=[]) => {
             const validParticipants = values.filter(value => value)
             setParticipants(validParticipants)
-
           })
       }
     }
@@ -226,36 +246,35 @@ function Room ({peerInstance,currentUserId,theme,setTheme}) {
     }
   }, [currentUserId, call])
 
-//share my screen with person userid
-const share=useCallback((stream,userId)=>{
+  //share my screen with person userid
+  const share=useCallback((stream,userId)=>{
+    if(!peerInstance||!screen.current)
+    {
+      return;
+    }
+    peerInstance.call(userId,stream)
+  })
 
-  if(!peerInstance||!screen.current)
-  {
-    return;
+  //stop screen sharing
+  function stopSharing(){
+    isShared(false);
+    setMesharing(false);
+    socketInstance.current.emit('stopping-screen-share',roomId)
   }
-  peerInstance.call(userId,stream)
 
-})
+  //if sharer stopped screen sharing
+  socketInstance.current?.off('stop-sharing').on('stop-sharing',(roomI)=>{
+    if(roomId===roomI)
+    {
+      isShared(false)
+    }
+  })
 
-//stop screen sharing
-function stopSharing(){
-  isShared(false);
-  setMesharing(false);
-  socketInstance.current.emit('stopping-screen-share',roomId)
-}
-
-socketInstance.current?.off('stop-sharing').on('stop-sharing',(roomI)=>{
-  if(roomId===roomI)
-  {
-    isShared(false)
-  }
-})
-
-//share screen 
-function screenShare(){
+  //share screen 
+  function screenShare(){
       console.log('lets display screen share ',participants)
       navigator.mediaDevices.getDisplayMedia().then(stream=>{
-        let videoTracks=stream.getVideoTracks()[0]
+          let videoTracks=stream.getVideoTracks()[0]
           videoTracks.onended=()=>{
             stopSharing();
           }
@@ -265,10 +284,10 @@ function screenShare(){
           screen.current.srcObject=stream
           screen.current.play();          
           participants.map((participant)=>share(stream,participant.userId))
-
       })
   }
 
+ //message notification 
  useEffect(() => {
     var d=document.getElementById('alert-outer')
     if(d)
@@ -280,6 +299,7 @@ function screenShare(){
 
  }, [alertName,alertMessage])
 
+ //raise hand notification
  useEffect(() => {
   if(alertRaise)
   {
@@ -294,109 +314,159 @@ function screenShare(){
 
 }, [alertRaise])
 
+
+useEffect(()=>{
+    const map=document.getElementById('map')
+    const video=document.getElementById('video')
+    console.log(video)
+    if(video)
+    {
+      if(!chat&&!theme)
+      {
+        if(participants.length===0)
+            map.className="single columns"
+        else if(participants.length===1)
+            map.className="double columns"
+        else if(participants.length===2)
+            map.className="triple columns"
+        else
+            map.className="columns"
+      }
+      else if(chat&&!theme)
+      {
+        if(participants.length===0)
+            map.className="single columns-open"
+        else if(participants.length===1)
+            map.className="double-open columns-open"
+        else
+            map.className="columns-open"
+      }
+      else if(!chat&&theme)
+      {
+        if(participants.length===0)
+            map.className="single dark-columns"
+        else if(participants.length===1)
+            map.className="double dark-columns"
+        else if(participants.length===2)
+            map.className="triple columns"
+        else
+            map.className="dark-columns"
+      }
+      else
+      {
+        if(participants.length===0)
+            map.className="single dark-columns-open"
+        else if(participants.length===1)
+            map.className="double-open dark-columns-open"
+        else
+            map.className="dark-columns-open"
+      }
+    }
+
+},[participants,chat])
+
+
+
 return (
   <div>
    {
-      token
-      ?
-      <div className={theme?"dark-Room":"Room"}>
-          
-          <div className={theme?"dark-room-container":"room-container"}>
-              <div className={theme?chat?"dark-columns-open":"dark-columns":chat?"columns-open":"columns"}>
-              {
-                shared
-                ?
-                <div>
-                  <video className={theme?"dark-screen":"screen"} ref={screen} muted></video>
+        token
+        ?
+        <div className={theme?"dark-Room":"Room"}>  
+            <div className={theme?"dark-room-container":"room-container"}>
+                <div id="map" className={theme?chat?"dark-columns-open":"dark-columns":chat?"columns-open":"columns"}>
+                {
+                    shared
+                    ?
+                    <div>
+                        <video className={theme?"dark-screen":"screen"} ref={screen} muted></video>
+                    </div>
+                    :
+                    null
+                }
+                <div className="column">
+                    <video id="video" className={theme?"dark-video":"video"} ref={currentUserVideoRef} muted/>
+                    <div className="video-name">You</div>
                 </div>
-                :
-                null
-              }
-              <div className="column">
-                  <video className={theme?"dark-video":"video"} ref={currentUserVideoRef} muted/>
-                  <div className="video-name">You</div>
-              </div>
-              {
-                  participants.map(
-                  participant => (
-                    <RemoteUserVideo theme={theme}
-                    key={participant.userId}
-                    remoteStream={participant.mediaStream}
-                    name={participant.name}
-                    />
+                {
+                    participants.map(
+                    participant => (
+                      <RemoteUserVideo theme={theme}
+                        key={participant.userId}
+                        remoteStream={participant.mediaStream}
+                        name={participant.name}
+                      />
+                    )
                   )
-                )
-              }
+                }
 
-         </div>
-         <BottomControls
-          onLeave={() => {
-              const videoTracks = currentMediaStream.current.getVideoTracks();
-              videoTracks[0].stop()
-              //console.log(roomId)
-              socketInstance?.current?.disconnect(roomId)
-              history.push(`/thanks`)
-          }}
-          toggleMute={() => setMuted(!muted)}
-          toggleVideoMute={() => setVideoMuted(!videoMuted)}
-          muted={muted}
-          videoMuted={videoMuted}
-          screenShare={()=>screenShare()}
-          mesharing={mesharing}
-          stopSharing={()=>{stopSharing()}}
-          theme={theme}
-          socketInstance={socketInstance.current}
-          name={name}
-          raised={raised}
-          newRaise={newRaise}
-          setRaised={(value)=>setRaised(value)}
-          setNewRaise={(value)=>setNewRaise(value)}
-          setLowerHand={(value)=>setLowerHand(value)}
-          setAlertRaise={(value)=>setAlertRaise(value)}
-          setRaiseName={(value)=>setRaiseName(value)}
-          />
-        <div>
-            <UpperButtons
-              setNewRaise={(value)=>setNewRaise(value)}
-              setLowerHand={(value)=>setLowerHand(value)}
-               newRaise={newRaise} lowerHand={lowerHand} name={name} 
-               theme={theme} socketInstance={socketInstance.current} 
-               chat={chat} setChat={setChat} 
-               setAlert={(value)=>setAlert(value)}
-               setAlertMessage={(value)=>setAlertMessage(value)}
-               setAlertName={(value)=>setAlertName(value)}
-               
-            />
-        </div>
+                </div>
+                <BottomControls
+                    onLeave={() => {
+                        const videoTracks = currentMediaStream.current.getVideoTracks();
+                        videoTracks[0].stop()
+                        //console.log(roomId)
+                        socketInstance?.current?.disconnect(roomId)
+                        history.push(`/thanks`)
+                    }}
+                    toggleMute={() => setMuted(!muted)}
+                    toggleVideoMute={() => setVideoMuted(!videoMuted)}
+                    muted={muted}
+                    videoMuted={videoMuted}
+                    screenShare={()=>screenShare()}
+                    mesharing={mesharing}
+                    stopSharing={()=>{stopSharing()}}
+                    theme={theme}
+                    socketInstance={socketInstance.current}
+                    name={name}
+                    raised={raised}
+                    newRaise={newRaise}
+                    setRaised={(value)=>setRaised(value)}
+                    setNewRaise={(value)=>setNewRaise(value)}
+                    setLowerHand={(value)=>setLowerHand(value)}
+                    setAlertRaise={(value)=>setAlertRaise(value)}
+                    setRaiseName={(value)=>setRaiseName(value)}
+                   
+                />
+                <div>
+                  <UpperButtons
+                      setNewRaise={(value)=>setNewRaise(value)}
+                      setLowerHand={(value)=>setLowerHand(value)}
+                      newRaise={newRaise} lowerHand={lowerHand} name={name} 
+                      theme={theme} socketInstance={socketInstance.current} 
+                      chat={chat} setChat={setChat} 
+                      setAlert={(value)=>setAlert(value)}
+                      setAlertMessage={(value)=>setAlertMessage(value)}
+                      setAlertName={(value)=>setAlertName(value)}
+                  />
+                </div>
 
-        <div id="alert-outer" className={showAlert?"alert-outer":"hide"}>
-          <Alert variant="danger">
-            <Alert.Heading> <i class="far fa-comment-dots"></i> New Message </Alert.Heading>
-            <hr/>
-            <p>{alertName}</p>
-          
-          </Alert>
-        </div>
+                <div id="alert-outer" className={showAlert?"alert-outer":"hide"}>
+                    <Alert variant="danger">
+                    <Alert.Heading> <i class="far fa-comment-dots"></i> New Message </Alert.Heading>
+                    <hr/>
+                    <p>{alertName}</p>
+                    </Alert>
+                </div>
 
-        <div id="alert-outer-raise" className={alertRaise?"alert-outer-raise":"hide"}>
-          <div><i class="fas fa-user"></i> {raiseName} raised hand</div>
-        </div>
+                <div id="alert-outer-raise" className={alertRaise?"alert-outer-raise":"hide"}>
+                    <div><i class="fas fa-user"></i> {raiseName} raised hand</div>
+                </div>
         
+            </div>
         </div>
-    
-   </div>
-   :
-   <div>
-   { 
-      login
-      ?
-      <Register setLogin={()=>setLogin(!login)}  token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Register>
       :
-      <Login  setLogin={()=>setLogin(!login)} token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Login>
-   }
-   </div>
+      <div>
+      { 
+          login
+          ?
+          <Register setLogin={()=>setLogin(!login)}  token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Register>
+          :
+          <Login  setLogin={()=>setLogin(!login)} token={token} setToken={setToken} setName={setName} theme={theme} setTheme={setTheme}></Login>
+      }
+      </div>
    } 
-   </div>
+  </div>
   );
 }
 

@@ -21,7 +21,7 @@ export default function Connect({toggleConnect}) {
         {
             alert('sent successfully')
         }
-        toggleConnect();
+        toggleConnect(false);
     }
 
     return (

@@ -6,7 +6,6 @@
     width: 100%;
 }
 
-
 .primary
 {
     height: 50px;
@@ -167,6 +166,13 @@
 {
     color:rgb(194, 158, 0);
     font-size: 43px;
+}
+
+@media screen and ( max-width:1200px) {
+    .share,.dark-share
+    {
+        display: none;
+    }
 }
 
 
