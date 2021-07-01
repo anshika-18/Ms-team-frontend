@@ -4,7 +4,7 @@ import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import PeerJs from 'peerjs'
 import {v4 as uuid} from 'uuid'
 
-import Landing from './components/landing'
+import Home from './components/home'
 import Room from './components/room'
 import Thanks from './components/thanks'
 import './App.css'
@@ -33,7 +33,7 @@ function App() {
    <div>
       <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={(props)=> <Landing
+        <Route exact path="/" component={(props)=> <Home
             {...props}
             theme={theme} setTheme={()=>setTheme(!theme)}
             currentUserId={currentUserId}

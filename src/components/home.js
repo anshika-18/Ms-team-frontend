@@ -5,7 +5,7 @@ import question2 from './img/question2.svg'
 
 
 import {createRoomAPI} from './api'
-export default function Landing({currentUserId,setTheme,theme}) {
+export default function Home({currentUserId,setTheme,theme}) {
     //console.log(props)
     const history=useHistory()
     
