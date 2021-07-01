@@ -55,7 +55,7 @@ export default function UpperButtons(props) {
                 <OverlayTrigger
                 placement="left"
                 overlay={<Popover id="popover-basic"><Popover.Title as="h3">Invite</Popover.Title></Popover>}>
-                    <button className="connect-out-button" onClick={()=>{setConnect(!connect); setShow(false)}}>
+                    <button className="connect-out-button" onClick={()=>{setConnect(!connect); setShow(false);props.setUsers(false);} }>
                          <i className="fas fa-share-alt"></i>
                     </button>
                 </OverlayTrigger>
@@ -65,11 +65,19 @@ export default function UpperButtons(props) {
                 
                 <OverlayTrigger
                 placement="left"
-                overlay={<Popover id="popover-basic"><Popover.Title as="h3">Participants</Popover.Title></Popover>}>
-                    <button className="participants-button" onClick={()=>{setShow(!show); setConnect(false)}}>
+                overlay={<Popover id="popover-basic"><Popover.Title as="h3">Hand Raised</Popover.Title></Popover>}>
+                    <button className="participants-button" onClick={()=>{setShow(!show); setConnect(false);props.setUsers(false);}}>
                         <i class="fas fa-users"></i>
                     </button>
                 </OverlayTrigger>
+                <OverlayTrigger
+                placement="left"
+                overlay={<Popover id="popover-basic"><Popover.Title as="h3">Participants</Popover.Title></Popover>}>
+                    <button className="participants-button" onClick={()=>{props.setUsers(!props.users); setShow(false); setConnect(false)}}>
+                        <i class="far fa-address-book"></i>
+                    </button>
+                </OverlayTrigger>
+                
             </div> 
         </div> 
     )

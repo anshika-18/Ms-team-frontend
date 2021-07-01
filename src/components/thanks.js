@@ -8,7 +8,7 @@ export default function Thanks() {
     return (
         <div className="thanks-outer">
             <div className="thanks-head">You left the Meeting</div>
-            <img className="thanks-image" src={thanks}></img>
+            <img className="thanks-image" src={thanks} alt="thanks"></img>
             <Link to="/"><Button className="thanks-button" variant="primary">Go To Home Page</Button></Link>
         </div>
     )

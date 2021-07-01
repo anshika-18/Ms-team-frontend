@@ -23,7 +23,7 @@ export default function MeetingDetails() {
                 <div className="meeting-head">Meeting Details-</div>
                 <div className="meeting-id"><span>Meeting Id- </span>{roomId}</div>
                 <input className="copy-text-input" type="text" value={window.location.href} id="myInput"></input>
-                    <button className="copy-text-button" onClick={()=>myFunction()}>Copy Link</button>
+                    <button className="copy-text-button" onClick={()=>myFunction()}>Copy Link<i class="fas fa-paste"></i></button>
             </div>
         </div>
     )

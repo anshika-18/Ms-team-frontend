@@ -5,7 +5,7 @@
     width: 20%;
     margin-top: 50px;
     position: fixed;
-    right: 60px;
+    right: 70px;
     border-radius: 20px 0 20px 20px;
     border:2px solid black;
     box-shadow: 0 0 10px pink;
@@ -102,7 +102,7 @@
     {
         width: 25vw;
         height: 65vh;
-        right:0;
+        right:70px;
     }
 }
 
@@ -114,7 +114,7 @@
     {
         width: 50vw;
         height: 65vh;
-        right:0;
+        right:70px;
     }
 }
 
@@ -124,7 +124,7 @@
     {
         width: 60vw;
         height: 65vh;
-        right:0;
+        right:70px;
     }
 }
 
@@ -135,7 +135,7 @@
     {
         width: 80vw;
         height: 65vh;
-        right:0;
+        right:20px;
     }
 }
 

@@ -27,12 +27,12 @@ export default function Connect({toggleConnect}) {
     return (
         <div>
             <div className="connect">
-                <div className="connect-head">Add People</div>
+                <div className="connect-head"><i class="fas fa-user-plus"></i>Add People</div>
                 <form className="connect-form">
                     <label>From</label>
                     <input  className="connect-input"type="email" placeholder="From(Your Name)" value={from} onChange={(e)=>setFrom(e.target.value)}></input>
                     <label>To</label>
-                    <input  className="connect-input" type="text" placeholder="To" value={to} onChange={(e)=>setTo(e.target.value)}></input>
+                    <input  className="connect-input" type="text" placeholder="To (eg. abc@gmail.com)" value={to} onChange={(e)=>setTo(e.target.value)}></input>
                     <input className="send-connect" type="submit" onClick={(e)=>{submit(e)}} value="SEND"></input>
                 </form>
             </div>

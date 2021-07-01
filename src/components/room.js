@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState } from 'react';
+import React, { useEffect, useRef, useCallback, useState, createElement } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios'
 import { getUserMediaPromise } from './media';
@@ -66,6 +66,8 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
     const [raiseName,setRaiseName]=useState('')
     const [token,setToken]=useState(sessionStorage.getItem('token'))
 
+    //state for participant button toggle
+    const [users,setUsers]=useState(false)
 
     //initialization of setting vido
     useEffect(() => {
@@ -127,9 +129,11 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
                                 mediaStream: remoteStream,
                                 name:res.data
                             }
+
                             setParticipants(participants.concat(newParticipant));
                 
                         })
+                    
                 }
                 //user's screen
                 else
@@ -204,6 +208,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
 
     //currentMediaStream.current.data="video";
     const outgoingCall = peerInstance.call(participant.id, currentMediaStream.current)
+
 
     return new Promise((resolve) => {
       const streamListener = (remoteStream) => {
@@ -379,7 +384,7 @@ return (
                     shared
                     ?
                     <div>
-                        <video className={theme?"dark-screen":"screen"} ref={screen} muted></video>
+                        <video className={theme?chat?"dark-screen-open":"dark-screen":chat?"screen-open":"screen"} ref={screen} muted></video>
                     </div>
                     :
                     null
@@ -438,7 +443,25 @@ return (
                       setAlert={(value)=>setAlert(value)}
                       setAlertMessage={(value)=>setAlertMessage(value)}
                       setAlertName={(value)=>setAlertName(value)}
+                      users={users}
+                      setUsers={setUsers}
                   />
+                </div>
+                <div className={users?"show-users":"hide-users"}>
+                  <div className="users-head">Participants</div>
+                  <ul className="users">
+                    {
+                      users&&participants.length>0
+                      ?
+                        participants.map(user=>(
+                          <li className="user-outer">
+                            <div className="user-logo">{user.name.substring(0,1)}</div>
+                            <div className="user-name">{user.name}</div>
+                          </li>))
+                      :
+                      <div className="no-user">No participants</div>
+                    }
+                  </ul>
                 </div>
 
                 <div id="alert-outer" className={showAlert?"alert-outer":"hide"}>

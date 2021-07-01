@@ -122,7 +122,7 @@ export default function BottomControls(props){
         <OverlayTrigger
             placement="top"
             overlay={<Popover id="popover-basic"><Popover.Title as="h3">Leave Call</Popover.Title></Popover>}>
-            <button className="leave mr-2" onClick={props.onLeave}>Leave call</button>
+            <button className="leave mr-2" onClick={props.onLeave}>Leave <i class="fas fa-phone"></i></button>
         </OverlayTrigger>
         <OverlayTrigger
             placement="top"

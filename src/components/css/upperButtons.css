@@ -1,7 +1,7 @@
 .upper-outer
 {
     background-color: rgb(80, 75, 75);
-    height: 200px;
+    height: 250px;
     display: grid;
     grid-template-columns: auto;
     width:60px;
@@ -82,7 +82,7 @@
 .dark-upper-outer
 {
     background-color: black;
-    height: 200px;
+    height: 250px;
     display: grid;
     grid-template-columns: auto;
     width:60px;

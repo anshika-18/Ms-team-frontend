@@ -16,6 +16,7 @@
     height: 250px;
     width: 332px;
     box-shadow: 0 0 20px rgb(0, 0, 0);
+    border:2px solid black
 }
 
 .video-name
@@ -29,8 +30,14 @@
 }
 .screen
 {
-    height: 90%;
-    width: 93%;
+    height: 85%;
+    width: 90%;
+    border-radius: 10px;
+}
+.screen-open,.dark-screen-open
+{    
+    height: 100%;
+    width: 105%;
     border-radius: 10px;
 }
 .columns
@@ -84,12 +91,13 @@
     height: 250px;
     width: 332px;
     box-shadow: 0 0 20px rgb(0, 0, 0);
+    border:2px solid black
 }
 
 .dark-screen
 {
-    height: 90%;
-    width: 93%;
+    height: 85%;
+    width: 90%;
     border-radius: 10px;
 }
 .dark-columns
@@ -143,23 +151,99 @@
 
 .single div .video,.single div .dark-video
 {
-    height: 530px;
-    width: 705px;
+    height: 490px;
+    width: 655px;
+    border:2px solid black
 }
 .double div .video,.double div .dark-video
 {
     height:400px;
     width: 533px;
+    border:2px solid black
 }
 .double-open div .video,.double-open div .dark-video
 {
     height:295px;
     width: 390px;
+    border:2px solid black
 }
 .triple div .video,.triple div .dark-video
 {
     height:290px;
     width: 390px;
+    border:2px solid black;
+}
+
+.show-users
+{
+  position: fixed;
+  right:70px;
+  background: #05ff97;
+  width:300px;
+  height:500px;
+  top:60px;
+}
+.hide-users
+{
+  display: none;
+}
+.users-head
+{
+    font-size:25px;
+    padding:10px;
+    font-weight:600;
+}
+.users
+{
+    list-style-type: none;
+    background: black;
+    padding:9px;
+    min-height:450px;
+    overflow-y: scroll;
+}
+.no-user
+{
+    color: white;
+}
+.users li
+{
+    margin:5px 0;
+    padding:10px 20px;
+    font-size: 20px;
+    background: rgba(255, 255,255, .1);
+    display: flex;
+    border-bottom:  2px  solid white;
+}
+
+.user-logo
+{  
+    height: 40px;
+    width:40px;
+    border-radius: 50%;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.users li:nth-child(odd) .user-logo
+{
+    background-color: #05ff97; 
+}
+.users li:nth-child(even) .user-logo
+{
+    background-color: violet;
+}
+.user-name
+{
+    color:white;
+    padding-left: 20px;
+}
+.users li:hover .user-logo
+{
+    box-shadow:0 0 5px 5px rgb(114, 113, 113);
+}
+.users li:hover
+{
+    transform: scale(1.06);
 }
 
 
@@ -186,10 +270,20 @@
     {
         height: 190px;
         width: 255px;
+        border:2px solid black
     }
     .video-name
     {
         margin-right: 100px;
+    }
+    .show-users
+    {
+        right:20px;
+        height:450px;
+    }
+    .users
+    {
+        min-height: 400px;
     }
     
 }
@@ -203,4 +297,6 @@
     width:300px;
     flex-wrap: wrap;
 }
+
+
 
