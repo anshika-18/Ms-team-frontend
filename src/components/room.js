@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState, createElement } from 'react';
+import React, { useEffect, useRef, useCallback, useState, useLayoutEffect} from 'react';
 import io from 'socket.io-client';
 import axios from 'axios'
 import { getUserMediaPromise } from './media';
@@ -64,7 +64,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
     const [showAlert,setAlert]=useState(false)
     const [alertRaise,setAlertRaise]=useState(false)
     const [raiseName,setRaiseName]=useState('')
-    const [token,setToken]=useState(sessionStorage.getItem('token'))
+    const [token,setToken]=useState('')
 
     //state for participant button toggle
     const [users,setUsers]=useState(false)
@@ -367,19 +367,21 @@ useEffect(()=>{
             map.className="dark-columns-open"
       }
     }
+    
 
-},[participants,chat])
+})
 
 
 
 return (
   <div>
+    
    {
         token
         ?
         <div className={theme?"dark-Room":"Room"}>  
             <div className={theme?"dark-room-container":"room-container"}>
-                <div id="map" className={theme?chat?"dark-columns-open":"dark-columns":chat?"columns-open":"columns"}>
+                <div id="map" className="first">
                 {
                     shared
                     ?
