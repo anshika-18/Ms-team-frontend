@@ -5,7 +5,7 @@ import { getUserMediaPromise } from './media';
 import { fetchRoomAPI, joinRoomAPI } from './api';
 import {useParams,useHistory} from 'react-router-dom'
 import RemoteUserVideo from './remotevideo';
-import BottomControls from './buttonControls';
+import LowerButtons from './lowerButtons';
 import './css/room.css'
 import {Alert} from 'react-bootstrap'
 import Login from './auth/login'
@@ -36,7 +36,8 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
     const [lowerHand,setLowerHand]=useState('');
 
     //screen share 
-    const screen=useRef(null)
+    const screenStream=useRef(null) //actual stream
+    const screen=useRef(null)  //scr object of stream
     const [shared,isShared]=useState(false)
     const [mesharing,setMesharing]=useState(false);
     let temp=false;
@@ -69,12 +70,12 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
     //state for participant button toggle
     const [users,setUsers]=useState(false)
 
-    //initialization of setting vido
+    //initialization of setting video
     useEffect(() => {
       if(token)
       {
-          console.log('if token is valid -----',name)
-          setCurrentUserVideo();
+         // console.log('if token is valid -----',name)
+          setMyVideo();
           const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
           socketInstance.current=socket;
 
@@ -87,6 +88,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
 
     //someone left the meeting 
     useEffect(() => {
+
       //remove user who left from participants state array
         const userLeft = (peerId) => {
         const filteredParticipants = participants.filter(
@@ -107,25 +109,25 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
           return;
         }
 
-        const incomingCallListener = async (incomingCall) => {
+        const incomingCallListener = async (incoming) => {
             if (!currentMediaStream.current) {
                 return;
             }
-            incomingCall.answer(currentMediaStream.current)
-            console.log(incomingCall.peer)
-            incomingCall.on('stream', function(remoteStream) {
+            incoming.answer(currentMediaStream.current)
+            console.log(incoming.peer)
+            incoming.on('stream', function(remoteStream) {
                 //user video
                 if(remoteStream.getTracks()[0].kind==='audio')
                 {
                     const data={
                         roomId,
-                        id:incomingCall.peer
+                        id:incoming.peer
                     }
                     axios.post('https://ms-team-anshika-backend.herokuapp.com/api/getname',data)
                         .then(res=>{
                             console.log('here is response from axios request',res);
                             const newParticipant= {
-                                userId: incomingCall.peer,
+                                userId: incoming.peer,
                                 mediaStream: remoteStream,
                                 name:res.data
                             }
@@ -175,7 +177,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
   }, [muted])
 
   //set my video--- called in initialization useEffect
-  const setCurrentUserVideo = useCallback(async () => {
+  const setMyVideo = useCallback(async () => {
     if (!currentUserVideoRef.current||!currentUserId) {
       return;
     }
@@ -207,8 +209,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
     }
 
     //currentMediaStream.current.data="video";
-    const outgoingCall = peerInstance.call(participant.id, currentMediaStream.current)
-
+    const outgoing = peerInstance.call(participant.id, currentMediaStream.current)
 
     return new Promise((resolve) => {
       const streamListener = (remoteStream) => {
@@ -218,11 +219,11 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
           mediaStream: remoteStream
         }
 
-        outgoingCall.off('stream', streamListener);
+        outgoing.off('stream', streamListener);
         resolve(newParticipant);
         console.log(participants)
       }
-      outgoingCall.on('stream', streamListener);
+      outgoing.on('stream', streamListener);
     })
 }, [participants]);
 
@@ -245,6 +246,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
             setParticipants(validParticipants)
           })
       }
+
     }
     catch (error) {
       console.error(error)
@@ -277,12 +279,19 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
 
   //share screen 
   function screenShare(){
-      console.log('lets display screen share ',participants)
-      navigator.mediaDevices.getDisplayMedia().then(stream=>{
+      if(shared===true)
+      {
+        alert('Someone is already sharing')
+      }
+      else
+      {
+        console.log('lets display screen share ',participants)
+        navigator.mediaDevices.getDisplayMedia().then(stream=>{
           let videoTracks=stream.getVideoTracks()[0]
           videoTracks.onended=()=>{
             stopSharing();
           }
+          screenStream.current=stream
           setMesharing(true)
           temp=true
           isShared(true);
@@ -290,7 +299,18 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
           screen.current.play();          
           participants.map((participant)=>share(stream,participant.userId))
       })
+      }
   }
+
+  useEffect(()=>{
+      if(mesharing)
+      {
+        console.log('peer id for new person - ',participants[participants.length-1].userId)
+         share(screenStream.current,participants[participants.length-1].userId);   
+          //participants.map((participant)=>share(stream,participant.userId))
+      }
+      
+  },[participants])
 
  //message notification 
  useEffect(() => {
@@ -371,6 +391,12 @@ useEffect(()=>{
 
 })
 
+const leave=()=>{
+    const videoTracks = currentMediaStream.current.getVideoTracks();
+    videoTracks[0].stop()
+    socketInstance?.current?.disconnect(roomId)
+    history.push(`/thanks`)
+}
 
 
 return (
@@ -408,13 +434,9 @@ return (
                 }
 
                 </div>
-                <BottomControls
+                <LowerButtons
                     onLeave={() => {
-                        const videoTracks = currentMediaStream.current.getVideoTracks();
-                        videoTracks[0].stop()
-                        //console.log(roomId)
-                        socketInstance?.current?.disconnect(roomId)
-                        history.push(`/thanks`)
+                        leave()
                     }}
                     toggleMute={() => setMuted(!muted)}
                     toggleVideoMute={() => setVideoMuted(!videoMuted)}

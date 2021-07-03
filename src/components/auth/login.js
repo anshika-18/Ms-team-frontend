@@ -20,15 +20,13 @@ export default function Login(props) {
             email:email,
             password:password
         }
-
         
         await axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/login',(data))
             .then((res)=>{
                 console.log(res)
                 props.setName(res.data.user.name);
-                props.setToken(res.data.token)
+                props.setToken(res.data.user.email)
                 console.log(res.data.user.name);
-                sessionStorage.setItem('token',res.data.token)
             })
             .catch(err=>{
                 console.log(err)

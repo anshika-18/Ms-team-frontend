@@ -107,7 +107,7 @@ export default function Home({currentUserId,setTheme,theme}) {
                       
                     </div>
                     <div className={theme?"dark-about-main":"about-main"}>
-                      <span>We believe in what people make possible.</span><br></br>
+                      <span>We believe in what people make possible.</span><br></br><br/><br/>
                       Our mission is to empower every person and every organization on the planet to achieve more.<br></br>
                       Microsoft Teams offers a wide range of features including video calling , text chatting , screen sharing etc.
                     </div>

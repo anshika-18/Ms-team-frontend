@@ -11,13 +11,23 @@ export default function Connect({toggleConnect}) {
     //send email
     const submit=async(e)=>{
         e.preventDefault();
+        if(!to)
+        {
+            alert('Please enter emails to whom you want to connect')
+            return;
+        }
+        if(!from)
+        {
+            alert('Please enter your name in from field')
+            return;
+        }
         const send={
             from:from,
             to:to,
             url:window.location.href
         }
         const response=sendMail(send)
-        if(sendMail)
+        if(response)
         {
             alert('sent successfully')
         }
