@@ -420,19 +420,19 @@
 }
 .landing-2
 {
-    background-color:rgb(202, 19, 105);
+    background-color:rgb(255, 250, 250);
     height: 100vh;
     box-shadow:  0 0 10px white;
 }
 
 .dark-image1-out
 {
-    background-color:rgb(157, 221, 240);
+    background-color:rgb(202, 19, 105);
     border-radius: 10px;
     margin: 50px;
     margin-top: 180px;
     padding-bottom: 30px;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px rgb(15, 15, 15);
 }
 
 .image1
@@ -458,7 +458,7 @@
 .dark-login,.dark-register
 {
     border:0;
-    background-color:rgb(235, 235, 14);
+    background-color:rgb(146, 18, 78);
     height: 50px;
     width: 120px;
     margin-right: 20px;
