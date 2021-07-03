@@ -427,7 +427,7 @@
 
 .dark-image1-out
 {
-    background-color:rgb(202, 19, 105);
+    background-color:rgb(146, 18, 78);
     border-radius: 10px;
     margin: 50px;
     margin-top: 180px;
@@ -451,6 +451,7 @@
     font-size: 36px;
     font-weight: 800;
     padding: 30px;
+    color:white;
     font-family: freestyle; 
 }
 
@@ -458,7 +459,7 @@
 .dark-login,.dark-register
 {
     border:0;
-    background-color:rgb(146, 18, 78);
+    background-color:rgb(54, 8, 29);
     height: 50px;
     width: 120px;
     margin-right: 20px;
