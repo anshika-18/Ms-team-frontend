@@ -674,11 +674,11 @@
 }
 
 
-@media only screen and (max-width:1400px) {
+@media only screen and (max-width:1450px) {
     .image1
     {
-        height: 280px;
-        width: 460px;
+        height: 350px;
+        width: 550px;
         margin-left: 20px;
         margin-right: 20px;
     }

@@ -90,10 +90,7 @@
     background-color: rgb(167, 164, 164);
     
 }
-.heading-chat span
-{
-    margin-left: 20px;
-}
+
 
 .smallspan
 {
@@ -220,6 +217,7 @@
     border-radius: 50%;
 }
 
+
 .dark-heading-chat
 {
     font-size: 25px;
@@ -230,29 +228,8 @@
 }
 
 
-.exit-chat
-{
-    margin-left: 150px;
-    border:0;
-    background: none;
-    font-size: xx-large;
-    color: white;
-    border-radius: 50%;
-    height: 45px;
-    width: 45px;
-    transition: 0.6s linear;
-}
-.exit-chat:hover
-{
-    opacity: 0.6;
-    cursor: pointer;
-    background-color: rgb(167, 164, 164);
-    
-}
-.heading-chat span
-{
-    margin-left: 20px;
-}
+
+
 
 .smallspan
 {
@@ -299,7 +276,7 @@
     font-weight: 700;
 }
 
-@media screen and (max-width: 1380px) {
+@media screen and (max-width: 1400px) {
     .chat,.dark-chat
     {
         width: 30vw;
@@ -312,7 +289,7 @@
     .chatbox
     {
         overflow-y: scroll;
-        height: 80vh;
+        height: 75vh;
         scroll-behavior: smooth;
     }
 }

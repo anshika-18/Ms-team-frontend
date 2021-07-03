@@ -462,6 +462,7 @@ return (
                       setNewRaise={(value)=>setNewRaise(value)}
                       setLowerHand={(value)=>setLowerHand(value)}
                       newRaise={newRaise} lowerHand={lowerHand} name={name} 
+                      socketInstance={socketInstance.current}
                       theme={theme} socketInstance={socketInstance.current} 
                       chat={chat} setChat={setChat} 
                       setAlert={(value)=>setAlert(value)}
