@@ -1,5 +1,5 @@
 import React,{useCallback} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Link} from 'react-router-dom'
 import './css/home.css'
 import question2 from './img/question2.svg'
 
@@ -54,6 +54,10 @@ export default function Home({currentUserId,setTheme,theme}) {
                                 Create <span className={theme?"dark-change-color":"change-color"}>Video Room</span>
                               </div>
                               <button onClick={createRoom} className={theme?"dark-join-button":"join-button"}>Create Meeting</button>
+                              <button onClick={()=>{
+                                  history.push('/chat')
+                              }} 
+                              className={theme?"dark-join-button":"join-button"}>Chat</button>
                               <div>
                                 <input className="join" type="text" id="join" placeholder="Enter Meeting Id"></input>
                                 <button onClick={join} className={theme?"dark-join-button":"join-button"}>Join Meeting</button>
@@ -68,6 +72,7 @@ export default function Home({currentUserId,setTheme,theme}) {
                       </div>
                       <div className={theme?"landing-2":"columns-landing-2"}> 
                         <div>
+                          <Link to="/features" className={theme?"dark-login":"login-from-landing"}>Features</Link>
                           <a href="#about"  className={theme?"dark-login":"login-from-landing"}>About</a>
                           <a href="#contact" className={theme?"dark-register":"register-from-landing"}>Contact</a>
                         </div>

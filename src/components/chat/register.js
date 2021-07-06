@@ -52,10 +52,11 @@ export default function Register(props)
         axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/register',data)
             .then((res)=>{
                 console.log(res)
-                props.setName(res.data.user.name);
-                props.setToken(res.data.user.email);
-                sessionStorage.setItem('email',res.data.user.email);
-                console.log(res.data.user.name);
+                sessionStorage.setItem('email',res.data.user.email)
+                sessionStorage.setItem('name',res.data.user.name)
+                props.setName(res.data.user.name)
+                props.setEmail(res.data.user.email)
+                props.setLogin(true)
             })
             .catch(err=>{
                 console.log(err)
@@ -114,7 +115,7 @@ export default function Register(props)
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}  />
                         </div>
-                        <button className="old-user" onClick={props.setLogin}>Already have an Account?</button>
+                        <button className="old-user" onClick={()=>{props.setregorlog(false)}}>Already have an Account?</button>
                         <input className="submit-register" type="submit" value="Send OTP" onClick={(e)=>{sendOtp(e)}}></input>
                        
                  </form>

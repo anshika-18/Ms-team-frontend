@@ -7,6 +7,9 @@ import {v4 as uuid} from 'uuid'
 import Home from './components/home'
 import Room from './components/room'
 import Thanks from './components/thanks'
+import Features from './components/features';
+import Chat from './components/chat/chat'
+import ParticularRoom from './components/chat/room';
 import './App.css'
 
 function App() {
@@ -28,11 +31,12 @@ function App() {
 
   },[]);
 
+  //console.log('APP is running')
   
   return (
    <div>
       <BrowserRouter>
-      <Switch>
+
         <Route exact path="/" component={(props)=> <Home
             {...props}
             theme={theme} setTheme={()=>setTheme(!theme)}
@@ -49,10 +53,18 @@ function App() {
         }>
         </Route>
         <Route exact path="/thanks" component={Thanks}></Route>
-      </Switch>
+        <Route exact path="/features" component={Features}></Route>
+        <Route path="/chat">
+          <Chat currentUserId={currentUserId} peerInstance={peerInstance.current}></Chat>
+        </Route>
+        <Route path="/chat/:roomId" render={(props)=><ParticularRoom  {...props} key={props.location.key}></ParticularRoom>}>
+    
+        </Route>
+      
     </BrowserRouter>
    </div>
   );
 }
 
 export default App;
+

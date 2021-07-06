@@ -303,7 +303,7 @@ function Room ({peerInstance,currentUserId,theme,setTheme})
   }
 
   useEffect(()=>{
-      if(mesharing)
+      if(mesharing&&participants[participants.length-1])
       {
         console.log('peer id for new person - ',participants[participants.length-1].userId)
          share(screenStream.current,participants[participants.length-1].userId);   

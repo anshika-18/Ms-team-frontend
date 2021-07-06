@@ -13,6 +13,7 @@ export default function Login(props) {
     const [msg,setMsg]=useState('')
     const [show, setShow] = useState(false);
     //console.log(props)
+    
     const onSubmit=async (e)=> {
         e.preventDefault();
         
@@ -21,18 +22,17 @@ export default function Login(props) {
             password:password
         }
         
-        await axios.post('hhttps://ms-team-anshika-backend.herokuapp.com/api/auth/login',(data))
+        await axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/login',(data))
             .then((res)=>{
                 console.log(res)
-                props.setName(res.data.user.name);
-                props.setToken(res.data.user.email)
                 sessionStorage.setItem('email',res.data.user.email)
-                console.log(res.data.user.name);
+                sessionStorage.setItem('name',res.data.user.name)
+                props.setName(res.data.user.name)
+                props.setEmail(res.data.user.email)
+                props.setLogin(true)
             })
             .catch(err=>{
                 console.log(err)
-                setMsg(err.response.data.msg)
-                setShow(true)
         })
     }
 
@@ -70,7 +70,7 @@ export default function Login(props) {
                             <i class="fas fa-lock"></i>
                             <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" />
                         </div>
-                        <button className="new-user" onClick={props.setLogin}>Do not have an Account?</button>
+                        <button className="new-user"onClick={()=>{props.setregorlog(true)}}>Do not have an Account?</button>
                         <input className="submit-login" type="submit" value="Login" onClick={(e)=>{onSubmit(e)}} />
                         
                  </form>

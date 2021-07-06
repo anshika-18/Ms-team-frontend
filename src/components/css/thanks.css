@@ -1,14 +1,11 @@
 .thanks-outer
 {
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-    text-align: center;
-    background-color:skyblue;
+    background-color:rgb(226, 236, 179);
     min-height: 100vh;
 }
 .thanks-head
 {
+    text-align: center;
     font-size: 50px;
     font-weight: 700;
     font-family: 'Pattaya', sans-serif;
@@ -20,11 +17,46 @@
 .thanks-button
 {
     margin-top: 30px;
+    text-align: center;
+    margin-left: 45%;
+}
+.feedback-head
+{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: 700;
 }
 
+.feedback
+{
+    margin-top: 20px;
+    margin-left: 43%;
+    text-align: center;
+    width:220px;
+    
+}
+
+.hidden
+{
+    display: none;
+}
+.end
+{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 100px;
+    font-weight: 700;
+}
+
+
 @media  screen and (max-width:600px) {
-    .thanks-image
+    .thanks-button
     {
-        width: 70vw;
+        margin-left: 30%;
+    }
+    .feedback
+    {
+        margin-left: 25%;
     }
 }

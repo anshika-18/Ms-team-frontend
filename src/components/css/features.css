@@ -1,0 +1,126 @@
+.features
+{
+        background: black;
+        color:white;
+}
+.features-head
+{
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+        text-align: center;
+        padding:20px;
+}
+.features-heading
+{
+        font-size: 40px;
+        font-family: 'Merienda One', cursive;
+}
+.home
+{
+        background-color: plum;
+        color:black;
+        text-align: center;
+        margin-left: 50px;
+        padding-top: 10px;
+        height:50px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 700;
+        
+}
+
+.features-1
+{
+        background:url("https://i.vimeocdn.com/video/529927355_1280x720.jpg");
+        background-size: cover;
+        color:white;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: space-around;
+        font-size: 30px;
+        padding:80px;
+        height: 600px;
+}
+.feature
+{
+        padding:30px;
+        font-weight: 700;
+        color:white;
+}
+.feature a
+{
+        color:white;
+}
+.features-1 i
+{
+        font-size: 90px;
+        
+}
+.feature i:hover
+{
+        color:rgb(235, 107, 247);
+        cursor: pointer;
+}
+
+.feature-grid
+{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+}
+.feature-toggle img
+{
+        width: 100%;
+        padding:30px;
+}
+.feature-toggle
+{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+}
+.feature-grid img
+{
+        width: 100%;
+        padding:30px;
+}
+.toggle-outer,.raise-outer,.outer-one
+{
+        text-align: center;
+        font-weight: 700;
+}
+.heading,.heading-dark
+{
+        font-size: 40px;
+        color:rgb(0, 255, 234);
+        font-family: 'Merriweather', serif;
+}
+.feature-text
+{
+        padding: 30px;
+        padding-left: 70px;
+        padding-right: 70px;
+        color:rgb(189, 255, 158);
+        font-family: 'Dancing Script', cursive;
+        font-size: 30px;
+}
+.outer-one,.toggle-outer,.raise-outer
+{
+        background-color:rgb(185, 180, 185);
+        box-shadow: 0 0 10px rgb(139, 139, 139);
+        margin:30px;
+        padding: 20px;
+        
+}
+.outer-one
+{
+        background-color:rgb(63, 63, 62);
+        
+}
+.heading-dark
+{
+        color:indigo
+}
+.text-dark
+{
+        color:indigo;
+}
