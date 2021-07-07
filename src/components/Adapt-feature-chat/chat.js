@@ -31,6 +31,16 @@ export default function Chat(props) {
     const [regorlog,setregorlog]=useState(false)
 
     console.log(props)
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))
+        {
+            setName(sessionStorage.getItem('name'));
+            setEmail(sessionStorage.getItem('email'))
+            setLogin(true)
+        }
+    },[])
+
     useEffect(()=>{
         console.log("new socket created")
         socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');

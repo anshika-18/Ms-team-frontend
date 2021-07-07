@@ -290,7 +290,7 @@ import UpperButtons from './Buttons/upperButtons';
 useEffect(()=>{
     const map=document.getElementById('map')
     const video=document.getElementById('video')
-    console.log(video)
+    //console.log(video)
     if(video)
     {
       if(!chat&&!theme)

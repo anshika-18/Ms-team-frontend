@@ -13,15 +13,6 @@ export default function Login(props) {
     const [show, setShow] = useState(false);
     //console.log(props)
 
-    useEffect(()=>{
-        if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))
-        {
-            props.setName(sessionStorage.getItem('name'));
-            props.setToken(sessionStorage.getItem('email'))
-            sessionStorage.setItem('email',sessionStorage.getItem('email'))
-            console.log(sessionStorage.getItem('name'));
-        }
-    })
 
     const onSubmit=async (e)=> {
         e.preventDefault();

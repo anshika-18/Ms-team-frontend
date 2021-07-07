@@ -16,6 +16,37 @@
     background-color: rgb(168, 157, 238);
     
 }
+.join-meet
+{
+    width: 30%;
+    margin-top: -7px;
+    font-weight: 600;
+}
+
+.show-parti
+{
+    width: 40%;
+    margin-right: 10px;
+    margin-top: -7px;
+    font-weight: 600;
+}
+.copy-id
+{
+    background: none;
+    border: none;
+    padding: 0;
+    color: white;
+    padding-left: 20px;
+    font-size: 30px;
+    margin-top: -10px;
+}
+.copy-id:hover
+{
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: black;
+}
 
 .hide-this
 {
@@ -33,6 +64,7 @@
     padding: 5px;
     margin: 10px;
 }
+
 
 
 .team-head
@@ -74,9 +106,9 @@ Link:hover
 {
     background-color: slateblue;
     display: grid;
-    grid-template-columns: 70% 30%;
-    padding: 10px;
-    height: 7vh;
+    grid-template-columns: 50% 50%;
+    padding: 15px;
+    height: 10vh;
     box-shadow: 0 0 10px rgb(71, 71, 71);
 }
 
@@ -84,7 +116,8 @@ Link:hover
 {
     font-size: 25px;
     color:white;
-    font-weight: 700;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 .room-1-form
@@ -116,14 +149,11 @@ Link:hover
     padding: 10px;
 }
 
-.chat-header Button
-{
 
-}
 
 .room-1-mess
 {
-    height:82vh;
+    height:79vh;
     overflow-y: scroll;
     padding: 20px;
 }
@@ -139,13 +169,20 @@ Link:hover
     font-size: 12px;
     color:red;
 }
-.mess
-{
-    
-}
+
 .date
 {
     color: saddlebrown;
     font-size: 12px;
 }
 
+.roomName-logo
+{
+    background-color:rgb(255, 0, 119) ;
+    padding:10px;
+    letter-spacing: 4px;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    box-shadow: 0 0 10px black;
+}
