@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
-import './css/meeting-details.css'
+import './meeting-details.css'
 import {useParams} from 'react-router-dom'
 
 export default function MeetingDetails() {
     const [open,setOpen]=useState(false)
     const {roomId}=useParams()
 
+    //copy link
     const myFunction=()=> {
         console.log('called+')
         var copyText = document.getElementById("myInput");
@@ -13,7 +14,7 @@ export default function MeetingDetails() {
         copyText.setSelectionRange(0, 99999)
         console.log(copyText.value)
         document.execCommand("copy");
-        alert("Copied the text: " + copyText.value);
+        alert("Copied the link: " + copyText.value);
       }
 
     return (

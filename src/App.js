@@ -4,12 +4,12 @@ import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import PeerJs from 'peerjs'
 import {v4 as uuid} from 'uuid'
 
-import Home from './components/home'
+import Home from './components/Home/home'
 import Room from './components/room'
-import Thanks from './components/thanks'
-import Features from './components/features';
-import Chat from './components/chat/chat'
-import ParticularRoom from './components/chat/room';
+import Thanks from './components/end-page/thanks'
+import Features from './components/Home/features';
+import Chat from './components/Adapt-feature-chat/chat'
+import ParticularRoom from './components/Adapt-feature-chat/room';
 import './App.css'
 
 function App() {

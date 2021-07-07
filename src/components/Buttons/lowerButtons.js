@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {Tooltip,OverlayTrigger,Popover} from 'react-bootstrap'
-import MeetingDetails from './meeting-details'
-import './css/button.css'
+import MeetingDetails from '../meeting-details/meeting-details'
+import './button.css'
 import {useParams} from 'react-router-dom'
 
 const style={
@@ -17,8 +17,6 @@ export default function BottomControls(props){
     const [time,setTime]=useState(0)
     const {roomId}=useParams()
 
-   
-
     useEffect(() => {
         const set=setInterval(()=>{
             setTime(time+1)
@@ -26,17 +24,11 @@ export default function BottomControls(props){
             let m=Math.floor((time/60));
             let h=Math.floor((time/3600));
             if(m<10)
-            {
                 m='0'+m;
-            }
             if(h<10)
-            {
                 h='0'+h;
-            }
             if(s<10)
-            {
                 s='0'+s;
-            }
             setDuration(h+" : "+m+" : "+s)
         },1000)
         

@@ -11,13 +11,11 @@ export default function Connect({toggleConnect}) {
     //send email
     const submit=async(e)=>{
         e.preventDefault();
-        if(!to)
-        {
+        if(!to){
             alert('Please enter emails to whom you want to connect')
             return;
         }
-        if(!from)
-        {
+        if(!from){
             alert('Please enter your name in from field')
             return;
         }
@@ -28,9 +26,7 @@ export default function Connect({toggleConnect}) {
         }
         const response=sendMail(send)
         if(response)
-        {
             alert('sent successfully')
-        }
         toggleConnect(false);
     }
 

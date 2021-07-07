@@ -1,8 +1,7 @@
 import React,{useState,useRef,useEffect} from 'react'
-import '../css/login.css'
+import '../auth/login.css'
 import axios from 'axios'
 import {Alert} from 'react-bootstrap'
-
 import Log from '../img/log.svg'
 import Profile from '../img/profile.svg'
 

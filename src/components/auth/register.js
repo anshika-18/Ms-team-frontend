@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import '../css/register.css'
+import './register.css'
 import axios from 'axios'
 import {Alert} from 'react-bootstrap'
 import Reg from '../img/register2.svg'

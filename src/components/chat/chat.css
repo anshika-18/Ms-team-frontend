@@ -1,0 +1,341 @@
+.chat
+{
+    background-color: rgb(184, 185, 189);
+    height: 100vh;
+    width: 25%;
+    position: fixed;
+    right: 0;
+    animation-name:example ;
+    animation-duration: 1s;
+    z-index: 5;
+
+}
+@keyframes example
+{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+.bottom-box
+{
+    position: absolute;
+    bottom: 15px;
+    margin-left: 20px;
+}
+
+.hide-chat
+{
+    visibility: hidden;
+}
+
+.form-input
+{
+    height:50px;
+    width: 260px;
+    border-radius: 20px;
+    padding:10px;
+    border:0;
+    font-size: 20px;
+}
+
+.form-input:focus
+{
+    outline: none;
+    box-shadow: 0 0 15px blue;
+}
+
+
+.form-button
+{
+    height: 50px;
+    width: 70px;
+    font-size: 50px;
+    background: none;
+    border: 0;
+    color:rgb(77, 70, 77)
+}
+
+.form-button i:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(77,70,77);
+    border-radius: 50%;
+}
+
+.heading-chat
+{
+    font-size: 25px;
+    font-weight: 700;
+    background-color:rgb(90, 90, 236);
+    color:white;
+    padding: 15px;
+}
+
+
+.exit-chat
+{
+    margin-left: 150px;
+    border:0;
+    background: none;
+    font-size: xx-large;
+    color: white;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    transition: 0.6s linear;
+}
+.exit-chat:hover
+{
+    opacity: 0.6;
+    cursor: pointer;
+    background-color: rgb(167, 164, 164);
+    
+}
+
+
+.smallspan
+{
+    font-size: 10px;
+    margin-left:150px;
+}
+
+.new-text
+{
+    max-width: 220px;
+    background-color:white ;
+    color:black;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 5px 20px;
+    word-wrap: break-word;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.my-text
+{
+    max-width: 220px;
+    background-color:rgb(83, 83, 85);
+    color:white;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 150px;
+    word-wrap: break-word;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.chatbox
+{
+    overflow-y: scroll;
+    height: 75vh;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar
+{
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(61, 62, 134);
+    border-radius: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dark-chat
+{
+    background-color: rgb(247, 247, 151);
+    height: 100vh;
+    width: 25%;
+    position: fixed;
+    right: 0;
+    animation-name: example;
+    animation-duration: 1s;
+}
+@keyframes example
+{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+.bottom-box
+{
+    position: absolute;
+    bottom: 15px;
+    margin-left: 20px;
+}
+
+.hide-chat
+{
+    display: none;
+}
+
+.form-input
+{
+    height:50px;
+    width: 260px;
+    border-radius: 20px;
+    padding:10px;
+    border:0;
+    font-size: 20px;
+}
+
+.form-input:focus
+{
+    outline: none;
+    box-shadow: 0 0 15px blue;
+}
+
+.dark-form-button
+{
+    height: 50px;
+    width: 70px;
+    font-size: 50px;
+    background: none;
+    border: 0;
+    color:rgb(146, 18, 78);
+}
+
+.dark-form-button i:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(77,70,77);
+    border-radius: 50%;
+}
+
+
+.dark-heading-chat
+{
+    font-size: 25px;
+    font-weight: 700;
+    background-color:rgb(146, 18, 78);
+    color:white;
+    padding: 15px;
+}
+
+
+
+
+
+.smallspan
+{
+    font-size: 10px;
+    margin-left:150px;
+}
+
+.new-text
+{
+    max-width: 220px;
+    background-color:white ;
+    color:black;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 5px 20px;
+    word-wrap: break-word;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.my-text
+{
+    max-width: 220px;
+    background-color:black;
+    color:white;
+    margin-top: 15px;
+    padding: 10px;
+    margin-left: 150px;
+    word-wrap: break-word;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.dark-chatbox
+{
+    overflow-y: scroll;
+    height: 80vh;
+    scroll-behavior: smooth;
+}
+
+.name-div
+{
+    font-size: 15px;
+    opacity: 1;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1400px) {
+    .chat,.dark-chat
+    {
+        width: 30vw;
+        height: 98vh;
+    }
+    .exit-chat
+    {
+        margin-left: 120px;
+    }
+    .chatbox
+    {
+        overflow-y: scroll;
+        height: 75vh;
+        scroll-behavior: smooth;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .chat,.dark-chat
+    {
+        width: 35vw;
+        height: 100vh;
+    }
+    .exit-chat
+    {
+        margin-left: 100px;
+    }
+    .chatbox
+    {
+        height: 80vh;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .chat,.dark-chat
+    {
+        width: 50vw;
+        height: 100vh;
+    }
+    .exit-chat
+    {
+        margin-left: 100px;
+    }
+    
+}
+
+
+@media screen and (max-width:600px) {
+    .chat,.dark-chat
+    {
+        width: 100vw;
+        height: 100vh;
+    }
+    .chatbox
+    {
+        overflow-y: scroll;
+        height: 75vh;
+        scroll-behavior: smooth;
+    }
+}
+

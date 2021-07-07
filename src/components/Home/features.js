@@ -1,14 +1,14 @@
 import React from 'react'
-import './css/features.css'
+import './features.css'
 import {Link} from "react-router-dom"
-import Light from './img-features/light.jpeg'
-import Dark from './img-features/dark.jpeg'
-import chat from './img-features/chat.jpeg'
-import raise1 from './img-features/raise1.jpeg'
-import raise2 from './img-features/raise2.jpeg'
-import send from './img-features/send.jpeg'
-import video from './img-features/video.jpg'
-import screen from './img-features/screen.jpeg'
+import Light from '../img-features/light.jpeg'
+import Dark from '../img-features/dark.jpeg'
+import chat from '../img-features/chat.jpeg'
+import raise1 from '../img-features/raise1.jpeg'
+import raise2 from '../img-features/raise2.jpeg'
+import send from '../img-features/send.jpeg'
+import video from '../img-features/video.jpg'
+import screen from '../img-features/screen.jpeg'
 
 export default function Features() {
         return (

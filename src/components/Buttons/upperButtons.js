@@ -1,9 +1,9 @@
 import {OverlayTrigger,Popover} from 'react-bootstrap'
 import React,{useState} from 'react'
-import Chat from './chat'
-import Connect from './connect'
-import './css/upperButtons.css'
-import Participants from './participants'
+import Chat from '../chat/chat'
+import Connect from '../connect'
+import './upperButtons.css'
+import Participants from '../participants'
 
 
 export default function UpperButtons(props) {

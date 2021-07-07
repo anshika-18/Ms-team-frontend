@@ -1,5 +1,5 @@
-import axios from 'axios'
 
+//create room 
 export const createRoomAPI=async(author)=>{
     const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms`,{
         method:'POST',
@@ -14,6 +14,7 @@ export const createRoomAPI=async(author)=>{
     return res;
 }
 
+//fetch room details
 export const fetchRoomAPI=async(roomId)=>{
     const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms/${roomId}`,{
         method:'GET'
@@ -22,6 +23,7 @@ export const fetchRoomAPI=async(roomId)=>{
     return res;
 }
 
+//join room
 export const joinRoomAPI=async(roomId,participant)=>{
     const response=await fetch(`https://ms-team-anshika-backend.herokuapp.com/rooms/${roomId}/join`,{
         method:'POST',
@@ -36,6 +38,7 @@ export const joinRoomAPI=async(roomId,participant)=>{
     return res;
 }
 
+// send mail for connection
 export const sendMail=async(send)=>{
     const response=await fetch('https://ms-team-anshika-backend.herokuapp.com/api/send',{
         method:'POST',

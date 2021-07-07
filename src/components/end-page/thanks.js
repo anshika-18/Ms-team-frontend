@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import './css/thanks.css'
+import './thanks.css'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
-import thanks from './img/thanks.svg'
+import thanks from '../img/thanks.svg'
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
 

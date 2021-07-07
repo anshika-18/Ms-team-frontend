@@ -1,10 +1,10 @@
 import React,{useCallback} from 'react'
 import {useHistory,Link} from 'react-router-dom'
-import './css/home.css'
-import question2 from './img/question2.svg'
+import './home.css'
+import question2 from '../img/question2.svg'
 
 
-import {createRoomAPI} from './api'
+import {createRoomAPI} from '../api'
 export default function Home({currentUserId,setTheme,theme}) {
     //console.log(props)
     const history=useHistory()
