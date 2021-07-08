@@ -44,6 +44,15 @@ import UpperButtons from './Buttons/upperButtons';
     const [token,setToken]=useState('')
     const [users,setUsers]=useState(false)   //state for participant button toggle
 
+    //get user from session storage if already logined
+    useEffect(()=>{
+      if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))
+      {
+          setName(sessionStorage.getItem('name'))
+          setToken(sessionStorage.getItem('email'))
+      }
+    },[])
+
     //initialization of setting video
     useEffect(() => {
       if(token)
@@ -90,9 +99,10 @@ import UpperButtons from './Buttons/upperButtons';
                         roomId,
                         id:incoming.peer
                     }
+                    //get name of user who called
                     axios.post('https://ms-team-anshika-backend.herokuapp.com/api/getname',data)
                         .then(res=>{
-                            console.log('here is response from axios request',res);
+                            //console.log('here is response from axios request',res);
                             const newParticipant= {
                                 userId: incoming.peer,
                                 mediaStream: remoteStream,
@@ -118,9 +128,8 @@ import UpperButtons from './Buttons/upperButtons';
 
   //video toggle
   useEffect(() => {
-    if (!currentMediaStream.current) {
-      return;
-    }
+    if (!currentMediaStream.current) 
+        return;
     const videoTracks = currentMediaStream.current.getVideoTracks();
     console.log("video - ",videoTracks)
     if (videoTracks[0]) {
@@ -131,9 +140,8 @@ import UpperButtons from './Buttons/upperButtons';
 
   //audio toggle
   useEffect(() => {
-    if (!currentMediaStream.current) {
+    if (!currentMediaStream.current)
       return;
-    }
     const audioTracks = currentMediaStream.current.getAudioTracks();
     if (audioTracks[0]) {
         audioTracks[0].enabled = !muted
@@ -144,9 +152,10 @@ import UpperButtons from './Buttons/upperButtons';
   //set my video--- called in initialization useEffect
   const setMyVideo = useCallback(async () => {
     if (!currentUserVideoRef.current||!currentUserId) 
-      return;
+        return;
 
-    try {
+    try 
+    {
       const mediaStream = await getUserMediaPromise({ video: true, audio: true });
       currentUserVideoRef.current.srcObject = mediaStream;
       currentUserVideoRef.current.play();
@@ -158,7 +167,8 @@ import UpperButtons from './Buttons/upperButtons';
       await joinRoomAPI(roomId,participant)
       await callEveryoneInTheRoom(roomId)
     }
-    catch (error) {
+    catch (error) 
+    {
       console.error(error)
     }
   }, [roomId, currentUserId,token])
@@ -253,6 +263,7 @@ import UpperButtons from './Buttons/upperButtons';
       }
   }
 
+  //if someone join after the screen has already been shared
   useEffect(()=>{
       if(mesharing&&participants[participants.length-1])
       {
@@ -286,7 +297,7 @@ import UpperButtons from './Buttons/upperButtons';
   }
 }, [alertRaise])
 
-
+//change class Name to style acc. to no. of users in room
 useEffect(()=>{
     const map=document.getElementById('map')
     const video=document.getElementById('video')
@@ -336,6 +347,7 @@ useEffect(()=>{
     }
 })
 
+//leave call
 const leave=()=>{
     const videoTracks = currentMediaStream.current.getVideoTracks();
     videoTracks[0].stop()

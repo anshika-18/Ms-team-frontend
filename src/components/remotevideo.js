@@ -3,6 +3,7 @@ import React,{useEffect,useRef} from 'react'
 export default function RemoteUserVideo(props) {
 
     const userVideoRef = useRef()
+    //play video of each user
     useEffect(() => {
         if (userVideoRef.current && props.remoteStream) {
             userVideoRef.current.srcObject = props.remoteStream

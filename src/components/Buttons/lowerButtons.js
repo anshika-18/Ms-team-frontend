@@ -17,6 +17,7 @@ export default function BottomControls(props){
     const [time,setTime]=useState(0)
     const {roomId}=useParams()
 
+    //set video duration (update it after each 1000ms)
     useEffect(() => {
         const set=setInterval(()=>{
             setTime(time+1)
@@ -35,11 +36,13 @@ export default function BottomControls(props){
        return()=>clearInterval(set) 
     },[time])
 
+    //raise hand
     const raiseHand=()=>{
         props.socketInstance?.emit('raise-hand',props.name,roomId)
         props.setRaised(true)
     }
 
+    //someone else raised hand
     useEffect(()=>{
         props.socketInstance?.off('hand-raised').on('hand-raised',(name,room)=>{
            if(roomId===room)
@@ -61,6 +64,7 @@ export default function BottomControls(props){
 
     })
 
+    //lower hand
     const lowerHand=()=>{
         props.socketInstance?.emit('lower-hand',props.name,roomId)
         props.setRaised(false)
@@ -72,7 +76,7 @@ export default function BottomControls(props){
         <div>
             <OverlayTrigger
             placement="top"
-            overlay={<Popover id="popover-basic"><Popover.Title as="h3">Time</Popover.Title></Popover>}>
+            overlay={<Popover id="popover-basic"><Popover.Title as="h3">Duration</Popover.Title></Popover>}>
                 <div className="time">--{duration}--</div>
             </OverlayTrigger>
         </div>

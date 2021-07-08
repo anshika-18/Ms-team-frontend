@@ -22,6 +22,8 @@ export default function ParticularRoom(props) {
 
     //console.log(location.socketInstance)
     //console.log(props)
+
+    //fetch history of messages and room details
     useEffect(() => {
         
         axios.get(`https://ms-team-anshika-backend.herokuapp.com/allMess/${roomId}`)
@@ -42,6 +44,7 @@ export default function ParticularRoom(props) {
             })
     },[roomId,props.login])
 
+    //recieve message
     useEffect(()=>{
         socketInstance.current?.off('recieve-mess').on('recieve-mess',(data)=>{
             if(roomId===data.roomId)
@@ -65,6 +68,7 @@ export default function ParticularRoom(props) {
         })
     })
 
+    //send messsage
     const sendMess=(e)=>{
         e.preventDefault()
         //socket emit
@@ -104,11 +108,13 @@ export default function ParticularRoom(props) {
         setMess('')
     }
 
+    //Join room
     const joinRoom=()=>{
         history.push(`/rooms/${roomId}`)
             
     }
 
+    //copy text to clipboard
     const copy=(copyText)=>{
         copyText.select();
         copyText.setSelectionRange(0, 99999)
@@ -116,6 +122,7 @@ export default function ParticularRoom(props) {
         document.execCommand("copy");
     }
 
+    //team details and copy code option
     const popover = (
         <Popover id="popover-basic">
           <Popover.Title as="h3">Team Code</Popover.Title>
@@ -126,6 +133,7 @@ export default function ParticularRoom(props) {
         </Popover>
       );
 
+      //list of all participants in the room
     const participantsPopover=(
         <Popover id="popover-basic" style={{width:"200px"}}>
         <Popover.Title as="h3">Members And Guests</Popover.Title>

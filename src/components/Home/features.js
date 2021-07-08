@@ -9,6 +9,7 @@ import raise2 from '../img-features/raise2.jpeg'
 import send from '../img-features/send.jpeg'
 import video from '../img-features/video.jpg'
 import screen from '../img-features/screen.jpeg'
+import Adoptchat from '../img-features/adopt-chat-2.jpeg'
 
 export default function Features() {
         return (
@@ -28,10 +29,25 @@ export default function Features() {
                                        <div className="f-3 feature"><a href="#share"><i class="fas fa-desktop"></i></a><div>Screen Share</div></div>
                                        <div className="f-4 feature"><a href="#chat"><i class="fas fa-comments"></i></a><div>Chat</div></div>
                                        <div className="f-5 feature"><a href="#raised"><i class="fas fa-hand-paper"></i></a><div>Raise Hand</div></div>
-                                       <div className="f-6 feature"><a href="#theme"><i class="fas fa-cloud-moon-rain"></i></a><div>Toggle theme</div></div>
+                                       <div className="f-6 feature"><a href="#theme"><i class="fas fa-cloud-moon-rain"></i></a><div>different theme</div></div>
+                                       <div></div>
+                                       <div className="f-7 feature"><a href="#adopt"><i class="fas fa-users"></i></a><div>Rooms</div></div>
                                 </div>
                         </div>
+                        <div className="outer-one" id="adopt">
+                                <div className="heading">Rooms</div>
+                                <div>
+                                        <img src={Adoptchat}></img>
+                                </div>
+                                <div className="feature-text">
+                                        You Can create your Team and chat with your team any  time.
+                                        You can go from chat to video call by just click on a single button.
+                                        You can chat with your team even after the video call ends.
+                                </div>
+                                        
+                        </div>
                         <div className="feature-grid">
+                                
                                 <div className="outer-one" id="video">
                                         <div className="heading">Video Call</div>
                                         <div>
@@ -80,7 +96,7 @@ export default function Features() {
                         </div>
                         
                         <div className="toggle-outer" id="theme">
-                                        <div className="heading-dark">Toggle Theme</div>
+                                        <div className="heading-dark">Light and Dark Theme</div>
                                         <div className="feature-toggle">
                                                 <img src={Light}></img>
                                                 <img src={Dark}></img>   

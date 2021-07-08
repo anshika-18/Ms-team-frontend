@@ -14,6 +14,7 @@ export default function Login(props) {
     //console.log(props)
 
 
+    //login
     const onSubmit=async (e)=> {
         e.preventDefault();
         
@@ -38,6 +39,7 @@ export default function Login(props) {
     }
 
    
+    //error message
     function AlertDismissibleExample() {
       
         if (show) {

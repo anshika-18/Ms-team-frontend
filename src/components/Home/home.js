@@ -53,11 +53,12 @@ export default function Home({currentUserId,setTheme,theme}) {
                               <div className={theme?"dark-text-head":"text-head"}>
                                 Create <span className={theme?"dark-change-color":"change-color"}>Video Room</span>
                               </div>
-                              <button onClick={createRoom} className={theme?"dark-join-button":"join-button"}>Create Meeting</button>
                               <button onClick={()=>{
                                   history.push('/chat')
                               }} 
-                              className={theme?"dark-join-button":"join-button"}>Chat</button>
+                              className={theme?"dark-join-button":"join-button"}>Your Rooms</button>
+                              <button onClick={createRoom} className={theme?"dark-join-button":"join-button"}>Instant Meet</button>
+                              
                               <div>
                                 <input className="join" type="text" id="join" placeholder="Enter Meeting Id"></input>
                                 <button onClick={join} className={theme?"dark-join-button":"join-button"}>Join Meeting</button>

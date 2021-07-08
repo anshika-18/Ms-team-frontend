@@ -18,6 +18,7 @@ export default function Register(props)
 
     console.log(props)
 
+    //send otp
     const sendOtp=(e)=>{
         e.preventDefault();
         if(!email||!username||!password)
@@ -39,6 +40,7 @@ export default function Register(props)
 
     }
 
+    //register
     const onSubmit=(e)=> {
         e.preventDefault();
         
@@ -66,6 +68,7 @@ export default function Register(props)
         
     }
 
+    //resend otp
     const resend=(e)=>{
       e.preventDefault();
 
@@ -78,6 +81,7 @@ export default function Register(props)
           })
     }
 
+    //error message
     function AlertDismissibleExample() {
       
         if (show) {

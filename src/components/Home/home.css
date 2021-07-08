@@ -47,6 +47,7 @@
     border-radius: 10px 0 10px 0;
     transition: 0.5s linear;
     font-family:freestyle;
+    margin-left: 20px;
 }
 .join-button:hover
 {
@@ -397,6 +398,7 @@
     border-radius: 10px 0 10px 0;
     transition: 0.5s linear;
     font-family:freestyle;
+    margin-left: 20px;
 }
 .dark-join-button:hover 
 {
@@ -470,6 +472,7 @@
     padding-left: 25px;
     padding-top: 10px;
     text-decoration: none;
+    color:azure;
     border-radius: 20px;
     transition: 0.5s linear;
     font-family: 'Cherry Swash', cursive;
@@ -480,6 +483,7 @@
     cursor: pointer;
     box-shadow:0 0 15px rgb(255, 250, 250);
     width: 130px;
+    color: bisque;
 }
 
 .dark-style 

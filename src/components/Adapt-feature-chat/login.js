@@ -13,6 +13,7 @@ export default function Login(props) {
     const [show, setShow] = useState(false);
     //console.log(props)
     
+    //login
     const onSubmit=async (e)=> {
         e.preventDefault();
         
@@ -35,7 +36,7 @@ export default function Login(props) {
         })
     }
 
-   
+   //error message
     function AlertDismissibleExample() {
       
         if (show) {

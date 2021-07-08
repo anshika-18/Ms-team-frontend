@@ -32,6 +32,7 @@ export default function Chat(props) {
 
     console.log(props)
 
+    //get name and email from session storage if user is already logined
     useEffect(()=>{
         if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))
         {
@@ -41,6 +42,7 @@ export default function Chat(props) {
         }
     },[])
 
+    //connect to socket
     useEffect(()=>{
         console.log("new socket created")
         socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');
@@ -48,6 +50,7 @@ export default function Chat(props) {
         
     },[])
 
+    //get details of all rooms of the user
     useEffect(() => {
             console.log('useEffect count',count)
             axios.get(`https://ms-team-anshika-backend.herokuapp.com/personDetails/${email}`)
@@ -64,6 +67,7 @@ export default function Chat(props) {
         
     }, [login,count])
 
+    //create a room
     const create=(e)=>{
         e.preventDefault()
         const id=uuid();
@@ -73,6 +77,7 @@ export default function Chat(props) {
             email,
             roomId:id
         }
+        //create chat room
         axios.post('https://ms-team-anshika-backend.herokuapp.com/createRoom',data)
             .then(res=>{
                 const nw={
@@ -80,6 +85,7 @@ export default function Chat(props) {
                     roomId:id
                 }
                 console.log(props.currentUserId);
+                //create video call room
                 axios.post('https://ms-team-anshika-backend.herokuapp.com/rooms',nw)
                     .then(re=>{
                         console.log('room created')
@@ -98,6 +104,7 @@ export default function Chat(props) {
 
     }
 
+    //join a room
     const join=(e)=>{
         e.preventDefault()
 
@@ -115,6 +122,7 @@ export default function Chat(props) {
             email,
             roomId:roomname
         }
+        //join room for chat
         axios.post('https://ms-team-anshika-backend.herokuapp.com/join/newRoom',data)
             .then(res=>{
                 console.log(res)
@@ -128,7 +136,7 @@ export default function Chat(props) {
 
     }
 
-    console.log(roomId)
+    //console.log(roomId)
     
 
 

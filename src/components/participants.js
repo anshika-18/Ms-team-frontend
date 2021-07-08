@@ -7,6 +7,7 @@ export default function Participants({newRaise,lowerHand,setNewRaise,setLowerHan
     const background=['#ccfcef','#fce3cc','#fcfacc','#d9fccc','#ffe6fc','#f0dcfc','#dee3ff']
     const text=['#e31414','yellow','lawngreen','#02eaf2','#d103ff','#ff0379','#2d03ff']
 
+    //map all participants
     useEffect(() => {
         if(newRaise)
         {

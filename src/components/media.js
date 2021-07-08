@@ -1,6 +1,7 @@
 export const getUserMediaPromise = (
     mediaConstraints)=> {
 
+        //capture media
     const getUserMedia = 
         navigator.getUserMedia
         || navigator.webkitGetUserMedia
