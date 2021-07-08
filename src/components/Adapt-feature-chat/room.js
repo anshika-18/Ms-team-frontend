@@ -104,6 +104,10 @@ export default function ParticularRoom(props) {
         setMess('')
     }
 
+    const joinMeet=()=>{
+        history.push(`/rooms/${roomId}`)
+    }
+
     //copy text to clipboard
     const copy=(copyText)=>{
         copyText.select();
@@ -143,7 +147,7 @@ export default function ParticularRoom(props) {
                     <OverlayTrigger trigger="click" placement="bottom" overlay={participantsPopover}>
                         <Button variant="light" className="show-parti">Members</Button>
                     </OverlayTrigger>
-                    <Link to={{pathname:"/rooms/"+roomId}} target="_blank"><Button variant="light" className="join-meet">Join Meet</Button></Link>
+                    <Button variant="light" onClick={()=>joinMeet()} className="join-meet">Join Meet</Button>
                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                         <button variant="light" className="copy-id"><i class="fas fa-info-circle"></i></button>
                     </OverlayTrigger>
