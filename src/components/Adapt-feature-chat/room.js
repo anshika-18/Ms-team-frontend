@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import Chat from './chat'
-import {useParams,useLocation,useHistory} from 'react-router-dom'
+import {useParams,useLocation,useHistory,Link} from 'react-router-dom'
 import axios from 'axios'
 import io from 'socket.io-client';
 import {Button,OverlayTrigger,Popover,Form} from 'react-bootstrap'
@@ -18,10 +18,6 @@ export default function ParticularRoom(props) {
     const [name,setName]=useState(sessionStorage.getItem('name'))
     const [email,setEmail]=useState(sessionStorage.getItem('email'))
     const [participants,setParticipants]=useState([])
-
-
-    //console.log(location.socketInstance)
-    //console.log(props)
 
     //fetch history of messages and room details
     useEffect(() => {
@@ -108,12 +104,6 @@ export default function ParticularRoom(props) {
         setMess('')
     }
 
-    //Join room
-    const joinRoom=()=>{
-        history.push(`/rooms/${roomId}`)
-            
-    }
-
     //copy text to clipboard
     const copy=(copyText)=>{
         copyText.select();
@@ -153,7 +143,7 @@ export default function ParticularRoom(props) {
                     <OverlayTrigger trigger="click" placement="bottom" overlay={participantsPopover}>
                         <Button variant="light" className="show-parti">Members</Button>
                     </OverlayTrigger>
-                    <Button variant="light" className="join-meet" onClick={()=>joinRoom()}>Join Meet</Button>
+                    <Link to={{pathname:"/rooms/"+roomId}} target="_blank"><Button variant="light" className="join-meet">Join Meet</Button></Link>
                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                         <button variant="light" className="copy-id"><i class="fas fa-info-circle"></i></button>
                     </OverlayTrigger>

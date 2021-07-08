@@ -45,9 +45,11 @@ export default function Chat(props) {
     //connect to socket
     useEffect(()=>{
         console.log("new socket created")
-        socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');
-        socketInstance.current.emit('join-room',roomId);
-        
+        if(!socketInstance.current)
+        {
+            socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');
+            socketInstance.current.emit('join-room',roomId);
+        }
     },[])
 
     //get details of all rooms of the user
