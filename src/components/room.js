@@ -44,6 +44,14 @@ import UpperButtons from './Buttons/upperButtons';
     const [token,setToken]=useState('')
     const [users,setUsers]=useState(false)   //state for participant button toggle
 
+    useEffect(()=>{
+      console.log('unmount bhr')
+      return()=>{
+        console.log('return unmmount')
+          leave()
+      }
+    },[])
+
     //get user from session storage if already logined
     useEffect(()=>{
       if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))

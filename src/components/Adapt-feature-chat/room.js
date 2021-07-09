@@ -105,6 +105,7 @@ export default function ParticularRoom(props) {
     }
 
     const joinMeet=()=>{
+        socketInstance.current.disconnect();
         history.push(`/rooms/${roomId}`)
     }
 
