@@ -43,7 +43,7 @@ import UpperButtons from './Buttons/upperButtons';
     const [raiseName,setRaiseName]=useState('')
     const [token,setToken]=useState('')
     const [users,setUsers]=useState(false)   //state for participant button toggle
-
+  /*
     useEffect(()=>{
       console.log('unmount bhr')
       return()=>{
@@ -51,7 +51,7 @@ import UpperButtons from './Buttons/upperButtons';
           leave()
       }
     },[])
-
+  */
     //get user from session storage if already logined
     useEffect(()=>{
       if(sessionStorage.getItem('email')&&sessionStorage.getItem('name'))
