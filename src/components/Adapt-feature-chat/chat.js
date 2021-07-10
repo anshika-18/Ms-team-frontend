@@ -9,8 +9,13 @@ import {v4 as uuid} from 'uuid'
 
 import './style.css'
 
+//adopt feature
+//previously what i did is made chat inside a video call
+//adopted it in a way like video call inside chat box
+
 export default function Chat(props) {
 
+    //popover states
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -19,15 +24,18 @@ export default function Chat(props) {
     const close=()=>setShowJoin(false)
 
     const history=useHistory()
+    //user details
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [login,setLogin]=useState(false)
     const [room,setRoom]=useState([])
-    const [currentRoom,setCurrentRoom]=useState('')
+
     const {roomId}=useParams()
     const socketInstance=useRef()
+    //roomname
     const [roomname,setroomName]=useState('')
     const [count,setCount]=useState(0)
+    //register or login 
     const [regorlog,setregorlog]=useState(false)
 
     console.log(props)
@@ -44,7 +52,7 @@ export default function Chat(props) {
 
     //connect to socket
     useEffect(()=>{
-        console.log("new socket created")
+        //console.log("new socket created")
         if(!socketInstance.current)
         {
             socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');
@@ -54,12 +62,12 @@ export default function Chat(props) {
 
     //get details of all rooms of the user
     useEffect(() => {
-            console.log('useEffect count',count)
+            //console.log('useEffect count',count)
             axios.get(`https://ms-team-anshika-backend.herokuapp.com/personDetails/${email}`)
             .then(data=>{
                 if(data.data)
                 {
-                    console.log(data.data.rooms)
+                    //console.log(data.data.rooms)
                     setRoom(data.data.rooms)
                 }
                 sessionStorage.setItem('name',name)
@@ -86,7 +94,7 @@ export default function Chat(props) {
                     author:props.currentUserId,
                     roomId:id
                 }
-                console.log(props.currentUserId);
+                //console.log(props.currentUserId);
                 //create video call room
                 axios.post('https://ms-team-anshika-backend.herokuapp.com/rooms',nw)
                     .then(re=>{
@@ -95,7 +103,7 @@ export default function Chat(props) {
                     .catch(err=>{
                         console.log(err)
                     })
-                console.log(res);
+                //console.log(res);
                 setShow(false)
                 setCount(count+1)
                 setroomName('')
@@ -110,6 +118,7 @@ export default function Chat(props) {
     const join=(e)=>{
         e.preventDefault()
 
+        //check if already part of this group
         for(let i=0;i<room.length;i++)
         {
             if(roomname===room[i].roomId)
@@ -137,9 +146,6 @@ export default function Chat(props) {
             })
 
     }
-
-    //console.log(roomId)
-    
 
 
     return (
@@ -195,7 +201,7 @@ export default function Chat(props) {
                     <div className="team-list">
                     {
                     room.map(r=>(
-                        <Link key={r.roomId} to={{pathname:"/chat/"+r.roomId,key:roomId,socketInstance:socketInstance.current,roomName:r.name,login:login}}><div>{r.name}</div></Link>
+                        <Link key={r.roomId} to={{pathname:"/chat/"+r.roomId,key:roomId,socketInstance:socketInstance.current,roomName:r.name,login:login,setCount:setCount}}><div>{r.name}</div></Link>
                     ))
                     }
                     </div>

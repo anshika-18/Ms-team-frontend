@@ -1,8 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
-import Chat from './chat'
 import {useParams,useLocation,useHistory,Link} from 'react-router-dom'
 import axios from 'axios'
-import io from 'socket.io-client';
 import {Button,OverlayTrigger,Popover,Form} from 'react-bootstrap'
 
 import './style.css'
@@ -22,6 +20,7 @@ export default function ParticularRoom(props) {
     //fetch history of messages and room details
     useEffect(() => {
         
+        //fetch details of all the messages of the room
         axios.get(`https://ms-team-anshika-backend.herokuapp.com/allMess/${roomId}`)
             .then(data=>{
                // console.log(data)
@@ -30,9 +29,10 @@ export default function ParticularRoom(props) {
                     setStoredMessages(data.data.message)
                 }
         })
+        //fetch details of all the participants of the room
         axios.get(`https://ms-team-anshika-backend.herokuapp.com/roomDetails/${roomId}`)
             .then(data=>{
-                console.log(data)
+                //console.log(data)
                 setParticipants(data.data.participants)
             })
             .catch(err=>{
@@ -139,6 +139,24 @@ export default function ParticularRoom(props) {
         }
         </Popover>
     ) 
+
+    const leaveGroup=()=>{
+        console.log('leave')
+        const data={
+            roomId,
+            email
+        }
+        console.log(data)
+        axios.put('http://localhost:5000/rooms/leave',data)
+            .then(success=>{
+                console.log("success")
+                alert('room Left sucessfully. Reload the page..!')
+                //props.setCount(1);
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
     
     return (
         <div className={location.login?"room-1-outer":"hide-this"}>
@@ -152,6 +170,7 @@ export default function ParticularRoom(props) {
                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                         <button variant="light" className="copy-id"><i class="fas fa-info-circle"></i></button>
                     </OverlayTrigger>
+                    <Button variant="danger" onClick={()=>leaveGroup()} className="leave-group">Leave</Button>
                 </div>
             </div>
             <div id={roomId} className="room-1-mess">
