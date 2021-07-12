@@ -55,7 +55,7 @@ function App() {
         <Route exact path="/thanks" component={Thanks}></Route>
         <Route exact path="/features" component={Features}></Route>
         <Route path="/chat">
-          <Chat currentUserId={currentUserId} peerInstance={peerInstance.current}></Chat>
+          <Chat currentUserId={currentUserId} peerInstance={peerInstance.current} theme={theme} setTheme={()=>setTheme(!theme)}></Chat>
         </Route>
         <Route path="/chat/:roomId" render={(props)=><ParticularRoom  {...props} key={props.location.key}></ParticularRoom>}>
     

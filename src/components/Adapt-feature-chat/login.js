@@ -50,7 +50,7 @@ export default function Login(props) {
         }
         return null;
     }
-
+    console.log(props)
 //<img className="login-profile" src={Profile} alt="profile-girl"></img>
     return (
         <div className="login">
@@ -60,7 +60,6 @@ export default function Login(props) {
                     <AlertDismissibleExample />
                     <img className="login-profile" src={Profile} alt="profile-girl"></img>
                     <h2 className="title">Login
-                    <button className="theme-change" onClick={props.setTheme}>{props.theme?<i className="fas fa-cloud-moon"></i>:<i className="fas fa-cloud-sun"></i>}</button>
                         </h2>
                         <div className="input-login">
                             <i class="fas fa-user"></i>
