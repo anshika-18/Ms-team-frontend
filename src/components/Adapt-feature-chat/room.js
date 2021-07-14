@@ -21,7 +21,7 @@ export default function ParticularRoom(props) {
     useEffect(() => {
         
         //fetch details of all the messages of the room
-        axios.get(`https://ms-team-anshika-backend.herokuapp.com/allMess/${roomId}`)
+        axios.get(`https://microsoft-teams-backend.herokuapp.com/allMess/${roomId}`)
             .then(data=>{
                // console.log(data)
                 if(data.data)
@@ -30,7 +30,7 @@ export default function ParticularRoom(props) {
                 }
         })
         //fetch details of all the participants of the room
-        axios.get(`https://ms-team-anshika-backend.herokuapp.com/roomDetails/${roomId}`)
+        axios.get(`https://microsoft-teams-backend.herokuapp.com/roomDetails/${roomId}`)
             .then(data=>{
                 //console.log(data)
                 setParticipants(data.data.participants)
@@ -76,7 +76,7 @@ export default function ParticularRoom(props) {
         }
         socketInstance.current.emit('send',data)
         //post req
-        axios.post('https://ms-team-anshika-backend.herokuapp.com/newMess',data)
+        axios.post('https://microsoft-teams-backend.herokuapp.com/newMess',data)
             .then(user=>{
                 console.log('mess',user.data.message)
                 const outer=document.getElementById(roomId)
@@ -147,7 +147,7 @@ export default function ParticularRoom(props) {
             email
         }
         console.log(data)
-        axios.put('http://localhost:5000/rooms/leave',data)
+        axios.put('https://microsoft-teams-backend.herokuapp.com/rooms/leave',data)
             .then(success=>{
                 console.log("success")
                 alert('room Left sucessfully. Reload the page..!')

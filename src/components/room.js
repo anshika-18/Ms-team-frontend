@@ -66,7 +66,7 @@ import UpperButtons from './Buttons/upperButtons';
       if(token)
       {
           setMyVideo();
-          const socket=io.connect('https://ms-team-anshika-backend.herokuapp.com')
+          const socket=io.connect('https://microsoft-teams-backend.herokuapp.com')
           socketInstance.current=socket;
           socketInstance.current.on('get:peerId', () => {
             socketInstance?.current?.emit('send:peerId', currentUserId)
@@ -108,7 +108,7 @@ import UpperButtons from './Buttons/upperButtons';
                         id:incoming.peer
                     }
                     //get name of user who called
-                    axios.post('https://ms-team-anshika-backend.herokuapp.com/api/getname',data)
+                    axios.post('https://microsoft-teams-backend.herokuapp.com/api/getname',data)
                         .then(res=>{
                             //console.log('here is response from axios request',res);
                             const newParticipant= {

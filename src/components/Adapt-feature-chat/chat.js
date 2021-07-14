@@ -55,7 +55,7 @@ export default function Chat(props) {
         //console.log("new socket created")
         if(!socketInstance.current)
         {
-            socketInstance.current=io('https://ms-team-anshika-backend.herokuapp.com');
+            socketInstance.current=io('https://microsoft-teams-backend.herokuapp.com');
             socketInstance.current.emit('join-room',roomId);
         }
     },[])
@@ -63,7 +63,7 @@ export default function Chat(props) {
     //get details of all rooms of the user
     useEffect(() => {
             //console.log('useEffect count',count)
-            axios.get(`https://ms-team-anshika-backend.herokuapp.com/personDetails/${email}`)
+            axios.get(`https://microsoft-teams-backend.herokuapp.com/personDetails/${email}`)
             .then(data=>{
                 if(data.data)
                 {
@@ -88,7 +88,7 @@ export default function Chat(props) {
             roomId:id
         }
         //create chat room
-        axios.post('https://ms-team-anshika-backend.herokuapp.com/createRoom',data)
+        axios.post('https://microsoft-teams-backend.herokuapp.com/createRoom',data)
             .then(res=>{
                 const nw={
                     author:props.currentUserId,
@@ -96,7 +96,7 @@ export default function Chat(props) {
                 }
                 //console.log(props.currentUserId);
                 //create video call room
-                axios.post('https://ms-team-anshika-backend.herokuapp.com/rooms',nw)
+                axios.post('https://microsoft-teams-backend.herokuapp.com/rooms',nw)
                     .then(re=>{
                         console.log('room created')
                     })
@@ -134,7 +134,7 @@ export default function Chat(props) {
             roomId:roomname
         }
         //join room for chat
-        axios.post('https://ms-team-anshika-backend.herokuapp.com/join/newRoom',data)
+        axios.post('https://microsoft-teams-backend.herokuapp.com/join/newRoom',data)
             .then(res=>{
                 console.log(res)
                 setShowJoin(false)

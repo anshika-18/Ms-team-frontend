@@ -22,7 +22,7 @@ export default function Login(props) {
             password:password
         }
         
-        await axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/login',(data))
+        await axios.post('https://microsoft-teams-backend.herokuapp.com/api/auth/login',(data))
             .then((res)=>{
                 console.log(res)
                 sessionStorage.setItem('email',res.data.user.email)

@@ -30,7 +30,7 @@ export default function Register(props)
         const data={
           email
         }
-        axios.post('https://ms-team-anshika-backend.herokuapp.com/sendOtp',data)
+        axios.post('https://microsoft-teams-backend.herokuapp.com/sendOtp',data)
              .then((res)=>{
                 setSentotp(true)
              })
@@ -51,7 +51,7 @@ export default function Register(props)
           otp
         }
 
-        axios.post('https://ms-team-anshika-backend.herokuapp.com/api/auth/register',data)
+        axios.post('https://microsoft-teams-backend.herokuapp.com/api/auth/register',data)
             .then((res)=>{
                 console.log(res)
                 sessionStorage.setItem('email',res.data.user.email)
@@ -72,7 +72,7 @@ export default function Register(props)
     const resend=(e)=>{
       e.preventDefault();
 
-      axios.post('https://ms-team-anshika-backend.herokuapp.com/resend')
+      axios.post('https://microsoft-teams-backend.herokuapp.com/resend')
           .then((res)=>{
               alert("otp sent successfully");
           })

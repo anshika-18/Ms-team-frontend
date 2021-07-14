@@ -28,7 +28,7 @@ export default function Thanks() {
                 rating,
                 email:sessionStorage.getItem('email')
             }
-            axios.post('https://ms-team-anshika-backend.herokuapp.com/feedback',data)
+            axios.post('https://microsoft-teams-backend.herokuapp.com/feedback',data)
                 .then((res)=>{
                     console.log(res)
                     console.log('Thanks for providing feedback')
