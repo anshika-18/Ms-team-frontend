@@ -1,6 +1,6 @@
 # Ms teams Clone
 ### Microsoft Engage'21
-## Available Live at https://ms-teams-anshika.herokuapp.com/
+## Available Live at https://microsoft-team-anshika.herokuapp.com/
 
 ## Working demo at https://youtu.be/iZ2EYGh3OsE
 
