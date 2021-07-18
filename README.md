@@ -29,6 +29,7 @@
 
 #### Terminal 1-
 ```
+npm init
 npm start
 ```
 #### Terminal 2-
