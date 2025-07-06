@@ -65,14 +65,14 @@
     margin: 10px;
 }
 
-
-
 .team-head
 {
     padding:20px;
     font-size: 30px;
     background-color: rgb(240, 240, 240);
     box-shadow: 0 0 10px rgb(71, 71, 71);
+    border-radius: 10px;
+    text-align: center;
 }
 .team-list 
 {
@@ -80,13 +80,22 @@
     height: 75vh;
     overflow-y: scroll;
     box-shadow: 0 0 10px rgb(71, 71, 71);
+    border-radius: 10px;
+    padding-top: 10px;
 }
 .team-list div
 {
-    background-color: rgb(240, 240, 240);
-    padding:15px;
     font-size: 17px;
     text-decoration: none;
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.break-line {
+    margin: 10px;
+    height: 1px;
+    background-color: lightgray;
 }
 Link
 {
@@ -98,7 +107,7 @@ Link:hover
 }
 .team-list div:hover
 {
-    background-color: rgb(170, 169, 169);
+    background-color: lightgray;
 }
 
 
@@ -131,6 +140,7 @@ Link:hover
 {
     font-size: 20px;
     width: 8vw;
+    border-radius: 10px;
 }
 
 .room-1-form input
@@ -147,6 +157,7 @@ Link:hover
 {
     width: 55vw;
     padding: 10px;
+    border-radius: 10px;
 }
 
 

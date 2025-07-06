@@ -1,0 +1,7 @@
+.create-team-btn {
+    width: 150px;
+    border-radius: 20px;
+    border-width: 0;
+    background-color: gray;
+    color: white;
+}

@@ -8,6 +8,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
 
 import "./style.css";
+import './chat.css'
 
 //adopt feature
 //previously what i did is made chat inside a video call
@@ -146,9 +147,9 @@ export default function Chat(props) {
           <div className="team-head">Teams</div>
           <div className="chat-sidebar">
             <div>
-              <Button variant="secondary" onClick={handleShow}>
+              <button className="create-team-btn" onClick={handleShow}>
                 Create Team
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose}>
                 <Form>
@@ -178,13 +179,12 @@ export default function Chat(props) {
               </Modal>
             </div>
             <div>
-              <Button
-                variant="secondary"
+              <button className="create-team-btn"
                 onClick={() => {
                   setShowJoin(true);
                 }}>
                 Join Team
-              </Button>
+              </button>
 
               <Modal show={showJoin} onHide={close}>
                 <Form>
@@ -213,18 +213,21 @@ export default function Chat(props) {
           <div className="all-rooms">
             <div className="team-list">
               {room.map((r) => (
-                <Link
-                  key={r.roomId}
-                  to={{
-                    pathname: "/chat/" + r.roomId,
-                    key: roomId,
-                    socketInstance: socketInstance.current,
-                    roomName: r.name,
-                    login: login,
-                    setCount: setCount,
-                  }}>
-                  <div>{r.name}</div>
-                </Link>
+                <div>
+                    <Link
+                    key={r.roomId}
+                    to={{
+                      pathname: "/chat/" + r.roomId,
+                      key: roomId,
+                      socketInstance: socketInstance.current,
+                      roomName: r.name,
+                      login: login,
+                      setCount: setCount,
+                    }}>
+                    <div>{r.name}</div>
+                  </Link>
+                  <div className="break-line"></div>
+                </div>
               ))}
             </div>
           </div>
